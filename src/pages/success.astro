@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Message Sent | The Palm Beach Broker"
+  description="Thank you for contacting The Palm Beach Broker. We will be in touch shortly."
+>
+  <div class="min-h-screen bg-warm-gray flex items-center justify-center px-4">
+    <div class="text-center max-w-lg">
+      <!-- Icon -->
+      <div class="w-20 h-20 border-2 border-gold rounded-full flex items-center justify-center mx-auto mb-8">
+        <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+
+      <p class="font-sans text-gold tracking-widest uppercase text-sm mb-3">Message Received</p>
+      <h1 class="font-serif text-4xl lg:text-5xl text-forest font-light mb-6">
+        Thank You
+      </h1>
+      <div class="w-16 h-px bg-gold mx-auto mb-8"></div>
+      <p class="font-sans text-warm-gray-dark text-lg leading-relaxed mb-10">
+        Your message has been received. I will personally review your inquiry and get back to you within 24 hours.
+      </p>
+
+      <a
+        href="/"
+        class="inline-block bg-forest text-white font-sans text-xs tracking-widest uppercase py-4 px-10 hover:bg-forest/90 transition-all duration-300"
+      >
+        Return Home
+      </a>
+    </div>
+  </div>
+</Layout>
