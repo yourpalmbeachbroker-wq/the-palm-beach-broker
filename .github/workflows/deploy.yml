@@ -24,10 +24,20 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy to Netlify
-        uses: netlify/actions/cli@master
-        with:
-          args: deploy --prod --dir=dist
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli
+
+      - name: Create or link site and deploy
+        run: |
+          SITE_ID=$(netlify sites:list --json 2>/dev/null | python3 -c "import sys,json; sites=[s for s in json.load(sys.stdin) if s.get('name')=='the-palm-beach-broker']; print(sites[0]['id'] if sites else '')" 2>/dev/null || echo '')
+          if [ -z "$SITE_ID" ]; then
+            echo "Creating new Netlify site..."
+            SITE_ID=$(netlify sites:create --name the-palm-beach-broker --account-slug yourpalmbeachbroker --json 2>/dev/null | python3 -c "import sys,json; print(json.load(sys.stdin)['id'])" 2>/dev/null || echo '')
+          fi
+          if [ -n "$SITE_ID" ]; then
+            netlify deploy --prod --dir=dist --site=$SITE_ID
+          else
+            netlify deploy --prod --dir=dist
+          fi
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
