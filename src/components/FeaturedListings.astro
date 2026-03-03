@@ -1,0 +1,124 @@
+---
+const listings = [
+  {
+    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80',
+    name: 'Ocean Breeze Estate',
+    location: 'Palm Beach',
+    beds: 5, baths: 6, sqft: '6,200',
+    price: '$8,950,000',
+    tag: 'Featured'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80',
+    name: 'The Meridian Penthouse',
+    location: 'Boca Raton',
+    beds: 4, baths: 4, sqft: '4,100',
+    price: '$4,750,000',
+    tag: 'New'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=80',
+    name: 'Royal Palm Villa',
+    location: 'Palm Beach',
+    beds: 6, baths: 7, sqft: '8,400',
+    price: '$12,500,000',
+    tag: 'Exclusive'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=600&q=80',
+    name: 'Waterfront Sanctuary',
+    location: 'Delray Beach',
+    beds: 4, baths: 5, sqft: '5,200',
+    price: '$6,200,000',
+    tag: 'Waterfront'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80',
+    name: 'The Grand Residences',
+    location: 'Jupiter',
+    beds: 5, baths: 5, sqft: '5,800',
+    price: '$5,400,000',
+    tag: 'New'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1416331108676-a22ccb276e35?w=600&q=80',
+    name: 'Palm Isle Retreat',
+    location: 'Wellington',
+    beds: 3, baths: 3, sqft: '3,600',
+    price: '$2,850,000',
+    tag: 'Golf View'
+  },
+];
+---
+
+<section id="listings" class="py-24 bg-cream">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <p class="text-gold text-xs tracking-[0.4em] uppercase font-sans font-light mb-4">Curated Selection</p>
+      <h2 class="font-serif text-4xl md:text-5xl text-forest font-light">Featured Properties</h2>
+      <div class="w-16 h-px bg-gold mx-auto mt-6"></div>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {listings.map((property) => (
+        <div class="group bg-white shadow-sm hover:shadow-xl transition-shadow duration-500 overflow-hidden">
+          <!-- Image Container -->
+          <div class="relative h-64 overflow-hidden">
+            <img
+              src={property.image}
+              alt={property.name}
+              class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+              loading="lazy"
+            />
+            <!-- Tag -->
+            <span class="absolute top-4 left-4 bg-forest text-white text-xs tracking-widest uppercase px-3 py-1 font-sans">
+              {property.tag}
+            </span>
+            <!-- Price Overlay -->
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+              <p class="font-serif text-2xl text-gold">{property.price}</p>
+            </div>
+          </div>
+
+          <!-- Card Body -->
+          <div class="p-6">
+            <h3 class="font-serif text-xl text-forest mb-1 font-medium">{property.name}</h3>
+            <p class="font-sans text-warm-gray text-sm tracking-wider uppercase flex items-center gap-1 mb-4">
+              <svg class="w-3.5 h-3.5 text-gold" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+              </svg>
+              {property.location}
+            </p>
+            <!-- Stats -->
+            <div class="flex items-center gap-4 text-xs text-warm-gray font-sans border-t border-gray-100 pt-4">
+              <span class="flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                {property.beds} Beds
+              </span>
+              <span class="flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7H5a2 2 0 00-2 2v9m0 0h18m-2 0V9a2 2 0 00-2-2h-3M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M8 7h8"></path></svg>
+                {property.baths} Baths
+              </span>
+              <span>{property.sqft} sqft</span>
+            </div>
+            <a
+              href="#contact"
+              class="mt-4 block text-center border border-forest text-forest text-xs tracking-widest uppercase py-2.5 font-sans hover:bg-forest hover:text-white transition-all duration-300"
+            >
+              View Details
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-12">
+      <a href="#contact" class="inline-block border border-gold text-gold px-10 py-3 text-sm tracking-widest uppercase font-sans hover:bg-gold hover:text-white transition-all duration-300">
+        View All Properties
+      </a>
+    </div>
+  </div>
+</section>
