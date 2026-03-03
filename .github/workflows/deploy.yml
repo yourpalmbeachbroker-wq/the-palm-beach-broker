@@ -16,10 +16,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build
         run: npm run build
@@ -27,7 +26,7 @@ jobs:
       - name: Install Netlify CLI
         run: npm install -g netlify-cli
 
-      - name: Create or link site and deploy
+      - name: Create site if needed and deploy
         run: |
           SITE_ID=$(netlify sites:list --json 2>/dev/null | python3 -c "import sys,json; sites=[s for s in json.load(sys.stdin) if s.get('name')=='the-palm-beach-broker']; print(sites[0]['id'] if sites else '')" 2>/dev/null || echo '')
           if [ -z "$SITE_ID" ]; then
