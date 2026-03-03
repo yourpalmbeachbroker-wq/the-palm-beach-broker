@@ -26,17 +26,26 @@ jobs:
       - name: Install Netlify CLI
         run: npm install -g netlify-cli
 
-      - name: Create site if needed and deploy
+      - name: Create Netlify site and deploy
         run: |
-          SITE_ID=$(netlify sites:list --json 2>/dev/null | python3 -c "import sys,json; sites=[s for s in json.load(sys.stdin) if s.get('name')=='the-palm-beach-broker']; print(sites[0]['id'] if sites else '')" 2>/dev/null || echo '')
+          # Try to get existing site ID via API
+          SITE_ID=$(curl -s -H "Authorization: Bearer $NETLIFY_AUTH_TOKEN" \
+            "https://api.netlify.com/api/v1/sites" | \
+            python3 -c "import sys,json; sites=[s for s in json.load(sys.stdin) if s.get('name')=='the-palm-beach-broker']; print(sites[0]['id'] if sites else '')" 2>/dev/null || echo '')
+          
           if [ -z "$SITE_ID" ]; then
-            echo "Creating new Netlify site..."
-            SITE_ID=$(netlify sites:create --name the-palm-beach-broker --account-slug yourpalmbeachbroker --json 2>/dev/null | python3 -c "import sys,json; print(json.load(sys.stdin)['id'])" 2>/dev/null || echo '')
-          fi
-          if [ -n "$SITE_ID" ]; then
-            netlify deploy --prod --dir=dist --site=$SITE_ID
+            echo "Creating new Netlify site via API..."
+            SITE_ID=$(curl -s -X POST \
+              -H "Authorization: Bearer $NETLIFY_AUTH_TOKEN" \
+              -H "Content-Type: application/json" \
+              -d '{"name":"the-palm-beach-broker","account_slug":"yourpalmbeachbroker"}' \
+              "https://api.netlify.com/api/v1/sites" | \
+              python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('id',''))" 2>/dev/null || echo '')
+            echo "Created site ID: $SITE_ID"
           else
-            netlify deploy --prod --dir=dist
+            echo "Found existing site ID: $SITE_ID"
           fi
+          
+          netlify deploy --prod --dir=dist --site=$SITE_ID
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
