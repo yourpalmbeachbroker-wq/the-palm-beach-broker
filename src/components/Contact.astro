@@ -51,20 +51,14 @@
           </div>
         </div>
       </div>
-      <!-- Right: Form (Netlify Forms) -->
+      <!-- Right: Form via Formspree -->
       <div class="bg-warm-gray p-8 lg:p-12">
         <form
-          name="contact"
+          action="https://formspree.io/f/yourpalmbeachbroker@gmail.com"
           method="POST"
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
-          action="/success"
           class="space-y-6"
+          id="contact-form"
         >
-          <input type="hidden" name="form-name" value="contact" />
-          <p class="hidden">
-            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
-          </p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
               <label for="first-name" class="block font-sans text-xs tracking-widest uppercase text-warm-gray-dark mb-2">First Name</label>
@@ -98,6 +92,7 @@
             <label for="message" class="block font-sans text-xs tracking-widest uppercase text-warm-gray-dark mb-2">Message</label>
             <textarea id="message" name="message" rows="4" class="w-full bg-white border border-gray-200 px-4 py-3 font-sans text-forest focus:outline-none focus:border-gold transition-colors resize-none" placeholder="Tell me about your dream property..."></textarea>
           </div>
+          <input type="hidden" name="_subject" value="New Contact from The Palm Beach Broker Website" />
           <button type="submit" class="w-full bg-gold text-white font-sans text-xs tracking-widest uppercase py-4 px-8 hover:bg-gold/90 transition-all duration-300">
             Send Message
           </button>
