@@ -51,8 +51,9 @@ const listings = [
 ];
 ---
 
-<section id="properties" class="relative py-20 overflow-hidden">
-  <!-- Video Background -->
+<!-- Continuous section - no top padding, same background as About -->
+<section id="properties" class="featured-section relative pt-0 pb-20 overflow-hidden">
+  <!-- Same video background - seamless continuation -->
   <div class="absolute inset-0 z-0">
     <video
       autoplay
@@ -64,11 +65,9 @@ const listings = [
     >
       <source src="https://cdn.pixabay.com/video/2020/07/26/45866-446559581_large.mp4" type="video/mp4" />
     </video>
-    <!-- Overlay -->
-    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/75"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/55 to-black/75"></div>
   </div>
 
-  <!-- Content -->
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-14">
       <p class="font-sans text-gold tracking-widest uppercase text-sm mb-3">Curated Selection</p>
@@ -80,11 +79,7 @@ const listings = [
       {listings.map((listing) => (
         <div class="group bg-white/10 backdrop-blur-sm border border-white/15 hover:border-gold/50 transition-all duration-500 overflow-hidden">
           <div class="relative overflow-hidden h-56">
-            <img
-              src={listing.image}
-              alt={listing.name}
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-            />
+            <img src={listing.image} alt={listing.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
             <span class="absolute top-4 left-4 bg-gold text-white font-sans text-xs tracking-widest uppercase px-3 py-1">{listing.tag}</span>
             <div class="absolute bottom-4 left-4">
@@ -95,22 +90,22 @@ const listings = [
             <h3 class="font-serif text-white text-xl font-light mb-1">{listing.name}</h3>
             <p class="font-sans text-gold text-xs tracking-widest uppercase mb-4">&#9679; {listing.location}</p>
             <div class="flex items-center gap-5 font-sans text-white/70 text-xs mb-6">
-              <span>&#127968; {listing.beds} Beds</span>
-              <span>&#9049; {listing.baths} Baths</span>
-              <span>&#11036; {listing.sqft} sqft</span>
+              <span>{listing.beds} Beds</span>
+              <span>{listing.baths} Baths</span>
+              <span>{listing.sqft} sqft</span>
             </div>
-            <a href="/#contact" class="block text-center border border-gold text-gold font-sans text-xs tracking-widest uppercase py-3 hover:bg-gold hover:text-white transition-all duration-300">
-              View Details
-            </a>
+            <a href="/#contact" class="block text-center border border-gold text-gold font-sans text-xs tracking-widest uppercase py-3 hover:bg-gold hover:text-white transition-all duration-300">View Details</a>
           </div>
         </div>
       ))}
     </div>
 
     <div class="text-center mt-12">
-      <a href="/#contact" class="inline-block border border-white text-white font-sans text-xs tracking-widest uppercase py-4 px-10 hover:bg-white hover:text-forest transition-all duration-300">
-        View All Properties
-      </a>
+      <a href="/#contact" class="inline-block border border-white text-white font-sans text-xs tracking-widest uppercase py-4 px-10 hover:bg-white hover:text-forest transition-all duration-300">View All Properties</a>
     </div>
   </div>
 </section>
+
+<style>
+  .featured-section { margin-top: -1px; }
+</style>
