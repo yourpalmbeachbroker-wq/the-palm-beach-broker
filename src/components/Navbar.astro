@@ -1,0 +1,52 @@
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-4">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="font-serif text-xl md:text-2xl text-gold tracking-widest font-light">
+        THE PALM BEACH BROKER
+      </a>
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="#listings" class="text-white text-sm tracking-widest uppercase hover:text-gold transition-colors duration-300 font-sans font-light">Properties</a>
+        <a href="#about" class="text-white text-sm tracking-widest uppercase hover:text-gold transition-colors duration-300 font-sans font-light">About</a>
+        <a href="#lifestyle" class="text-white text-sm tracking-widest uppercase hover:text-gold transition-colors duration-300 font-sans font-light">Lifestyle</a>
+        <a href="#contact" class="border border-gold text-gold px-5 py-2 text-sm tracking-widest uppercase hover:bg-gold hover:text-white transition-all duration-300 font-sans font-light">Contact</a>
+      </div>
+      <!-- Mobile Menu Button -->
+      <button id="menu-btn" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2 border-t border-gold/30 mt-4">
+      <a href="#listings" class="block text-white text-sm tracking-widest uppercase py-2 hover:text-gold transition-colors">Properties</a>
+      <a href="#about" class="block text-white text-sm tracking-widest uppercase py-2 hover:text-gold transition-colors">About</a>
+      <a href="#lifestyle" class="block text-white text-sm tracking-widest uppercase py-2 hover:text-gold transition-colors">Lifestyle</a>
+      <a href="#contact" class="block text-gold text-sm tracking-widest uppercase py-2 hover:text-gold-light transition-colors">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) {
+      navbar.classList.add('bg-forest', 'shadow-lg');
+      navbar.classList.remove('py-4');
+      navbar.classList.add('py-2');
+    } else {
+      navbar.classList.remove('bg-forest', 'shadow-lg');
+      navbar.classList.remove('py-2');
+      navbar.classList.add('py-4');
+    }
+  });
+
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+</script>
