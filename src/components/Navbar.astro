@@ -1,52 +1,60 @@
-<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-4">
+---
+---
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" id="main-nav">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between">
-      <!-- Logo -->
-      <a href="#" class="font-serif text-xl md:text-2xl text-gold tracking-widest font-light">
-        THE PALM BEACH BROKER
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo + Subtitle -->
+      <a href="/" class="flex flex-col items-start group">
+        <span class="font-sans text-white tracking-[0.35em] uppercase text-sm font-light group-hover:text-gold transition-colors duration-300">
+          The Palm Beach Broker
+        </span>
+        <span class="font-sans text-gold/80 tracking-widest uppercase text-xs font-light mt-0.5">
+          Broker Associate &nbsp;|&nbsp; CGI Realty
+        </span>
       </a>
+
       <!-- Desktop Nav -->
-      <div class="hidden md:flex items-center space-x-8">
-        <a href="#listings" class="text-white text-sm tracking-widest uppercase hover:text-gold transition-colors duration-300 font-sans font-light">Properties</a>
-        <a href="#about" class="text-white text-sm tracking-widest uppercase hover:text-gold transition-colors duration-300 font-sans font-light">About</a>
-        <a href="#lifestyle" class="text-white text-sm tracking-widest uppercase hover:text-gold transition-colors duration-300 font-sans font-light">Lifestyle</a>
-        <a href="#contact" class="border border-gold text-gold px-5 py-2 text-sm tracking-widest uppercase hover:bg-gold hover:text-white transition-all duration-300 font-sans font-light">Contact</a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="/#properties" class="font-sans text-white/80 tracking-widest uppercase text-xs hover:text-gold transition-colors duration-300">Properties</a>
+        <a href="/#about" class="font-sans text-white/80 tracking-widest uppercase text-xs hover:text-gold transition-colors duration-300">About</a>
+        <a href="/#lifestyle" class="font-sans text-white/80 tracking-widest uppercase text-xs hover:text-gold transition-colors duration-300">Lifestyle</a>
+        <a href="/#contact" class="font-sans text-xs tracking-widest uppercase border border-gold text-gold px-6 py-2.5 hover:bg-gold hover:text-white transition-all duration-300">Contact</a>
       </div>
-      <!-- Mobile Menu Button -->
-      <button id="menu-btn" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu">
+
+      <!-- Mobile menu button -->
+      <button id="mobile-menu-btn" class="md:hidden text-white hover:text-gold transition-colors" aria-label="Menu">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
     </div>
+
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2 border-t border-gold/30 mt-4">
-      <a href="#listings" class="block text-white text-sm tracking-widest uppercase py-2 hover:text-gold transition-colors">Properties</a>
-      <a href="#about" class="block text-white text-sm tracking-widest uppercase py-2 hover:text-gold transition-colors">About</a>
-      <a href="#lifestyle" class="block text-white text-sm tracking-widest uppercase py-2 hover:text-gold transition-colors">Lifestyle</a>
-      <a href="#contact" class="block text-gold text-sm tracking-widest uppercase py-2 hover:text-gold-light transition-colors">Contact</a>
+    <div id="mobile-menu" class="hidden md:hidden pb-6">
+      <div class="flex flex-col gap-4 pt-4 border-t border-white/10">
+        <a href="/#properties" class="font-sans text-white/80 tracking-widest uppercase text-xs hover:text-gold transition-colors">Properties</a>
+        <a href="/#about" class="font-sans text-white/80 tracking-widest uppercase text-xs hover:text-gold transition-colors">About</a>
+        <a href="/#lifestyle" class="font-sans text-white/80 tracking-widest uppercase text-xs hover:text-gold transition-colors">Lifestyle</a>
+        <a href="/#contact" class="font-sans text-xs tracking-widest uppercase border border-gold text-gold px-6 py-2.5 text-center hover:bg-gold hover:text-white transition-all duration-300">Contact</a>
+      </div>
     </div>
   </div>
 </nav>
 
 <script>
-  const navbar = document.getElementById('navbar');
-  const menuBtn = document.getElementById('menu-btn');
+  const nav = document.getElementById('main-nav');
+  const mobileBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
 
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 80) {
-      navbar.classList.add('bg-forest', 'shadow-lg');
-      navbar.classList.remove('py-4');
-      navbar.classList.add('py-2');
+    if (window.scrollY > 50) {
+      nav.classList.add('bg-forest/95', 'backdrop-blur-md', 'shadow-lg');
     } else {
-      navbar.classList.remove('bg-forest', 'shadow-lg');
-      navbar.classList.remove('py-2');
-      navbar.classList.add('py-4');
+      nav.classList.remove('bg-forest/95', 'backdrop-blur-md', 'shadow-lg');
     }
   });
 
-  menuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
+  mobileBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
   });
 </script>
