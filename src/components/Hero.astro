@@ -27,49 +27,21 @@
     <p class="font-sans text-white/80 text-base sm:text-lg font-light max-w-xl mx-auto mb-10 tracking-wide">
       Discover the finest estates, villas, and penthouses in Palm Beach County
     </p>
-    <!-- Search Form -->
-    <div class="bg-white/10 backdrop-blur-md border border-white/20 p-6 sm:p-8 rounded-none max-w-4xl mx-auto">
-      <form id="search-form" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="flex flex-col">
-          <label class="text-gold text-xs tracking-widest uppercase mb-2 font-sans font-light">Location</label>
-          <select name="location" class="bg-white/10 border border-white/30 text-white px-4 py-3 text-sm font-sans focus:outline-none focus:border-gold transition-colors">
-            <option value="" class="text-gray-900">All Locations</option>
-            <option value="palm-beach" class="text-gray-900">Palm Beach</option>
-            <option value="boca-raton" class="text-gray-900">Boca Raton</option>
-            <option value="delray-beach" class="text-gray-900">Delray Beach</option>
-            <option value="wellington" class="text-gray-900">Wellington</option>
-            <option value="jupiter" class="text-gray-900">Jupiter</option>
-          </select>
-        </div>
-        <div class="flex flex-col">
-          <label class="text-gold text-xs tracking-widest uppercase mb-2 font-sans font-light">Property Type</label>
-          <select name="type" class="bg-white/10 border border-white/30 text-white px-4 py-3 text-sm font-sans focus:outline-none focus:border-gold transition-colors">
-            <option value="" class="text-gray-900">All Types</option>
-            <option value="villa" class="text-gray-900">Villa</option>
-            <option value="condo" class="text-gray-900">Condo</option>
-            <option value="penthouse" class="text-gray-900">Penthouse</option>
-            <option value="estate" class="text-gray-900">Estate</option>
-            <option value="waterfront" class="text-gray-900">Waterfront</option>
-          </select>
-        </div>
-        <div class="flex flex-col">
-          <label class="text-gold text-xs tracking-widest uppercase mb-2 font-sans font-light">Min Price</label>
-          <select name="price" class="bg-white/10 border border-white/30 text-white px-4 py-3 text-sm font-sans focus:outline-none focus:border-gold transition-colors">
-            <option value="" class="text-gray-900">Any Price</option>
-            <option value="500k" class="text-gray-900">$500K+</option>
-            <option value="1m" class="text-gray-900">$1M+</option>
-            <option value="3m" class="text-gray-900">$3M+</option>
-            <option value="5m" class="text-gray-900">$5M+</option>
-            <option value="10m" class="text-gray-900">$10M+</option>
-          </select>
-        </div>
-        <div class="flex flex-col">
-          <label class="text-gold text-xs tracking-widest uppercase mb-2 font-sans font-light">&nbsp;</label>
-          <button type="submit" class="bg-gold text-white font-sans text-xs tracking-widest uppercase py-3 px-6 hover:bg-gold/90 transition-all duration-300 h-full">
-            Search
-          </button>
-        </div>
-      </form>
+    
+    <!-- CTA Buttons -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+      <a 
+        href="#properties" 
+        class="w-full sm:w-auto bg-gold text-white font-sans text-xs tracking-widest uppercase py-4 px-10 hover:bg-gold/90 transition-all duration-300 border border-gold"
+      >
+        Ir al sitio
+      </a>
+      <a 
+        href="#contact" 
+        class="w-full sm:w-auto bg-transparent text-white font-sans text-xs tracking-widest uppercase py-4 px-10 hover:bg-white hover:text-forest transition-all duration-300 border border-white/30"
+      >
+        Get in touch
+      </a>
     </div>
   </div>
 </section>
