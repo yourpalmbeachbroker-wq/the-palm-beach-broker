@@ -93,50 +93,80 @@ const listings = [
 ];
 ---
 
-<section id="properties" class="relative pt-20 pb-20 overflow-hidden">
-  <!-- Ocean/beach video background -->
+<section id="properties" class="relative py-24 overflow-hidden">
+  <!-- Video Background -->
   <div class="absolute inset-0 z-0">
-    <video autoplay muted loop playsinline class="w-full h-full object-cover" poster="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80">
-      <source src="https://cdn.pixabay.com/video/2020/07/26/45866-446559581_large.mp4" type="video/mp4" />
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      class="w-full h-full object-cover"
+    >
+      <source src="https://cdn.pixabay.com/video/2019/09/16/26983-360722126_large.mp4" type="video/mp4" />
+      <source src="https://videos.pexels.com/video-files/1437396/1437396-hd_1920_1080_30fps.mp4" type="video/mp4" />
     </video>
-    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/75"></div>
+    <div class="absolute inset-0 bg-forest/80"></div>
   </div>
 
+  <!-- Content -->
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-14">
-      <p class="font-sans text-gold tracking-widest uppercase text-sm mb-3">Curated Selection</p>
-      <h2 class="font-serif text-4xl lg:text-5xl text-white font-light">Featured Properties</h2>
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <p class="font-sans text-gold tracking-widest uppercase text-sm mb-2">Curated Selection</p>
+      <h2 class="font-serif text-4xl sm:text-5xl text-white font-light">Featured Properties</h2>
       <div class="w-16 h-px bg-gold mx-auto mt-6"></div>
     </div>
 
+    <!-- Listings Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {listings.map((listing) => (
-        <div class="group bg-white/10 backdrop-blur-sm border border-white/15 hover:border-gold/50 transition-all duration-500 overflow-hidden">
-          <div class="relative overflow-hidden h-56">
-            <img src={listing.image} alt={listing.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-            <span class={`absolute top-4 left-4 font-sans text-xs tracking-widest uppercase px-3 py-1 ${listing.status === 'Sold' ? 'bg-red-600 text-white' : 'bg-gold text-white'}`}>{listing.tag}</span>
-            <div class="absolute bottom-4 left-4">
-              <p class="font-serif text-white text-xl font-light">{listing.soldPrice}</p>
-              {listing.status === 'Sold' && <p class="font-sans text-gold text-xs">Sold</p>}
+        <div class="group bg-white/5 backdrop-blur-sm border border-white/10 hover:border-gold/40 transition-all duration-500 overflow-hidden">
+          <div class="relative overflow-hidden">
+            <img
+              src={listing.image}
+              alt={listing.name}
+              class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div class="absolute top-4 left-4">
+              <span class={`font-sans text-xs tracking-widest uppercase px-3 py-1 ${
+                listing.status === 'Sold'
+                  ? 'bg-gold text-forest'
+                  : 'bg-white/20 text-white border border-white/30'
+              }`}>{listing.tag}</span>
             </div>
+            <div class="absolute bottom-4 right-4">
+              <span class="font-serif text-xl text-white font-light">{listing.soldPrice}</span>
+            </div>
+            {listing.status === 'Sold' &&
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            }
           </div>
+
           <div class="p-6">
-            <h3 class="font-serif text-white text-xl font-light mb-1">{listing.name}</h3>
-            <p class="font-sans text-gold text-xs tracking-widest uppercase mb-2">&#9679; {listing.location}</p>
-            <p class="font-sans text-white/60 text-xs mb-4">{listing.address}</p>
-            <p class="font-sans text-white/70 text-sm mb-4">{listing.description}</p>
-            <div class="flex items-center gap-5 font-sans text-white/70 text-xs mb-6">
+            <h3 class="font-serif text-lg text-white mb-1">{listing.name}</h3>
+            <p class="font-sans text-gold/70 text-xs tracking-widest uppercase mb-3">&#9679; {listing.location}</p>
+            <p class="font-sans text-white/50 text-xs mb-4">{listing.address}</p>
+            <p class="font-sans text-white/60 text-sm mb-4 leading-relaxed">{listing.description}</p>
+
+            <div class="flex gap-4 text-white/50 text-xs font-sans tracking-wide mb-5">
               <span>{listing.beds} Beds</span>
+              <span>&bull;</span>
               <span>{listing.baths} Baths</span>
+              <span>&bull;</span>
               <span>{listing.sqft} sqft</span>
             </div>
+
             {listing.status === 'Sold' && (
-              <div class="mb-4 p-3 bg-white/5 border border-gold/30">
-                <p class="font-sans text-xs text-white/60 mb-1"><span class="text-gold">Buyer:</span> {listing.buyer}</p>
-              </div>
+              <p class="font-sans text-xs text-gold/70 mb-4">
+                <span class="text-white/40">Buyer: </span>{listing.buyer}
+              </p>
             )}
-            <a href="/#contact" class="block text-center border border-gold text-gold font-sans text-xs tracking-widest uppercase py-3 hover:bg-gold hover:text-white transition-all duration-300">
+
+            <a
+              href="/#contact"
+              class="inline-block font-sans text-xs tracking-widest uppercase border border-gold text-gold px-6 py-2.5 hover:bg-gold hover:text-forest transition-all duration-300"
+            >
               {listing.status === 'Sold' ? 'View Details' : 'Inquire Now'}
             </a>
           </div>
@@ -144,18 +174,20 @@ const listings = [
       ))}
     </div>
 
-    <div class="text-center mt-12">
-      <a href="/#contact" class="inline-block border border-white text-white font-sans text-xs tracking-widest uppercase py-4 px-10 hover:bg-white hover:text-forest transition-all duration-300">View All Properties</a>
+    <!-- CTA -->
+    <div class="text-center mt-16">
+      <a
+        href="/#contact"
+        class="inline-block font-sans text-xs tracking-widest uppercase border border-gold/50 text-gold/80 px-10 py-4 hover:border-gold hover:text-gold transition-all duration-300"
+      >
+        View All Properties
+      </a>
+    </div>
+
+    <!-- Tagline -->
+    <div class="text-center mt-12 border-t border-white/10 pt-10">
+      <p class="font-serif text-white/40 text-sm tracking-wide">THE PALM BEACH BROKER &mdash; Your Trusted Real Estate Partner</p>
+      <blockquote class="font-serif text-white/25 text-sm italic mt-2">&ldquo;Your needs, always my priority.&rdquo;</blockquote>
     </div>
   </div>
 </section>
-
-<!-- Quote Bar -->
-<div class="bg-gold py-10 px-4">
-  <div class="max-w-4xl mx-auto text-center">
-    <span class="font-sans text-white text-xs tracking-widest uppercase opacity-70 block mb-3">THE DANIEYIS GROUP LLC &mdash; Your Palm Beach Broker</span>
-    <blockquote class="font-serif text-white text-2xl sm:text-3xl lg:text-4xl font-light italic">
-      &ldquo;Your needs, always my priority.&rdquo;
-    </blockquote>
-  </div>
-</div>
