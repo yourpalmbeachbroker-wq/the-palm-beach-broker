@@ -1,35 +1,89 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<Layout
-  title="Message Sent | The Palm Beach Broker"
-  description="Thank you for contacting The Palm Beach Broker. We will be in touch shortly."
->
-  <div class="min-h-screen bg-warm-gray flex items-center justify-center px-4">
-    <div class="text-center max-w-lg">
-      <!-- Icon -->
-      <div class="w-20 h-20 border-2 border-gold rounded-full flex items-center justify-center mx-auto mb-8">
-        <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7" />
-        </svg>
+<Layout title="Message Sent Successfully | The Palm Beach Broker">
+  <Navbar />
+  
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-20">
+    <!-- Background -->
+    <div class="absolute inset-0 z-0">
+      <div style="background-image: url('https://images.unsplash.com/photo-1600047508788-786f3865b4ef?w=1920&q=80'); background-size: cover; background-position: center; background-attachment: fixed;" class="w-full h-full"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-stone-900/95 via-stone-800/90 to-stone-900/95"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <!-- Success Icon -->
+      <div class="mb-8 flex justify-center">
+        <div class="w-20 h-20 bg-gold/20 rounded-full flex items-center justify-center border-2 border-gold">
+          <svg class="w-10 h-10 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
       </div>
 
-      <p class="font-sans text-gold tracking-widest uppercase text-sm mb-3">Message Received</p>
-      <h1 class="font-serif text-4xl lg:text-5xl text-forest font-light mb-6">
-        Thank You
+      <!-- Heading -->
+      <h1 class="font-serif text-4xl lg:text-5xl text-white font-light leading-tight mb-6">
+        Message Received
       </h1>
-      <div class="w-16 h-px bg-gold mx-auto mb-8"></div>
-      <p class="font-sans text-warm-gray-dark text-lg leading-relaxed mb-10">
-        Your message has been received. I will personally review your inquiry and get back to you within 24 hours.
-      </p>
 
-      <a
-        href="/"
-        class="inline-block bg-forest text-white font-sans text-xs tracking-widest uppercase py-4 px-10 hover:bg-forest/90 transition-all duration-300"
-      >
-        Return Home
-      </a>
+      <!-- Divider -->
+      <div class="w-16 h-px bg-gold mx-auto mb-8"></div>
+
+      <!-- Message -->
+      <div class="space-y-6 mb-12">
+        <p class="font-sans text-white/85 text-lg leading-relaxed">
+          Thank you for reaching out to <span class="text-gold font-semibold">THE DANIEYIS GROUP LLC</span>. We have successfully received your message.
+        </p>
+        
+        <p class="font-sans text-white/80 text-base leading-relaxed">
+          Our team will review your inquiry and get back to you shortly. We are committed to providing you with exceptional service and professional guidance throughout your real estate journey.
+        </p>
+
+        <p class="font-sans text-white/70 text-sm italic">
+          Expected response time: Within 24 hours
+        </p>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="bg-white/5 backdrop-blur-sm border border-white/20 p-8 rounded-sm mb-12">
+        <p class="font-sans text-white/60 text-xs tracking-widest uppercase mb-4">Direct Contact</p>
+        <div class="space-y-4">
+          <div>
+            <p class="font-sans text-white/50 text-xs mb-1">Phone / WhatsApp</p>
+            <a href="tel:+17869758002" class="font-serif text-gold text-lg hover:text-white transition-colors">
+              +1 (786) 975-8002
+            </a>
+          </div>
+          <div>
+            <p class="font-sans text-white/50 text-xs mb-1">Email</p>
+            <a href="mailto:yourpalmbeachbroker@gmail.com" class="font-serif text-gold text-lg hover:text-white transition-colors">
+              yourpalmbeachbroker@gmail.com
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a 
+          href="/" 
+          class="w-full sm:w-auto bg-gold text-white font-sans text-xs tracking-widest uppercase py-4 px-10 hover:bg-gold/90 transition-all duration-300"
+        >
+          Return to Home
+        </a>
+        <a 
+          href="/#properties" 
+          class="w-full sm:w-auto bg-transparent text-white font-sans text-xs tracking-widest uppercase py-4 px-10 hover:bg-white hover:text-forest transition-all duration-300 border border-white/30"
+        >
+          View Properties
+        </a>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <Footer />
 </Layout>
