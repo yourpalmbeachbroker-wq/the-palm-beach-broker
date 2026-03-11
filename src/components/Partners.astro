@@ -5,35 +5,74 @@ const partners = [
   { name: 'Realtor.com', url: 'https://www.realtor.com/', logo: '/logos/realtor.png' },
   { name: 'Redfin', url: 'https://www.redfin.com/', logo: '/logos/redfin.png' }
 ];
+
+const slides = [
+  'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1600&q=80',
+  'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=80',
+  'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1600&q=80',
+  'https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=1600&q=80',
+  'https://images.unsplash.com/photo-1416331108676-a22ccb276e35?w=1600&q=80',
+];
 ---
-<section id="partners" class="py-20 bg-white border-y border-forest/5">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+<section id="partners" class="relative overflow-hidden border-y border-forest/5">
+  <!-- Slideshow Background -->
+  <div class="slideshow-bg absolute inset-0 z-0">
+    {slides.map((src, i) => (
+      <img
+        src={src}
+        alt="Luxury property"
+        class={`slide-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${i === 0 ? 'opacity-100' : 'opacity-0'}`}
+        data-index={i}
+      />
+    ))}
+    <div class="absolute inset-0 bg-forest/85"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
     <div class="text-center mb-16">
-      <h2 class="font-serif text-3xl sm:text-4xl text-forest font-light">Find more properties here</h2>
+      <p class="font-sans text-gold tracking-widest uppercase text-sm mb-3">Trusted Platforms</p>
+      <h2 class="font-serif text-4xl sm:text-5xl text-white font-light mb-4">Explore More Opportunities</h2>
+      <p class="font-sans text-white/60 tracking-wide text-sm max-w-xl mx-auto">Access the most comprehensive property listings across South Florida through our trusted partner platforms.</p>
       <div class="w-16 h-px bg-gold mx-auto mt-6"></div>
     </div>
-    
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-12 items-center justify-items-center">
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
       {partners.map(partner => (
-        <a 
-          href={partner.url} 
-          target="_blank" 
+        <a
+          href={partner.url}
+          target="_blank"
           rel="noopener noreferrer"
-          class="group flex flex-col items-center gap-6 transition-all duration-500 w-full max-w-[200px]"
+          class="group flex flex-col items-center gap-4 transition-all duration-500 w-full max-w-[180px]"
         >
-          <div class="w-full h-20 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-500 opacity-70 group-hover:opacity-100">
-            <img 
-              src={partner.logo} 
-              alt={partner.name} 
+          <div class="w-full h-16 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-500 opacity-60 group-hover:opacity-100">
+            <img
+              src={partner.logo}
+              alt={partner.name}
               class="max-h-full max-w-full object-contain"
             />
           </div>
           <div class="flex flex-col items-center">
-            <span class="font-serif text-lg text-forest/60 group-hover:text-gold transition-colors">{partner.name}</span>
-            <span class="font-sans text-[10px] tracking-[0.2em] uppercase text-forest/40 group-hover:text-gold transition-colors mt-1">Visit Website</span>
+            <span class="font-serif text-base text-white/70 group-hover:text-gold transition-colors">{partner.name}</span>
+            <span class="font-sans text-[10px] tracking-[0.2em] uppercase text-white/30 group-hover:text-gold transition-colors mt-1">Explore Listings</span>
           </div>
         </a>
       ))}
     </div>
   </div>
 </section>
+
+<script>
+  const imgs = document.querySelectorAll('.slide-img');
+  let current = 0;
+  if (imgs.length > 1) {
+    setInterval(() => {
+      imgs[current].classList.remove('opacity-100');
+      imgs[current].classList.add('opacity-0');
+      current = (current + 1) % imgs.length;
+      imgs[current].classList.remove('opacity-0');
+      imgs[current].classList.add('opacity-100');
+    }, 4000);
+  }
+</script>
