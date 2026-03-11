@@ -1,34 +1,94 @@
 ---
 const listings = [
   {
-    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80',
-    name: 'Ocean Breeze Estate', location: 'Palm Beach',
-    beds: 5, baths: 6, sqft: '6,200', price: '$8,950,000', tag: 'Featured'
+    image: 'https://photos.zillowstatic.com/p_e/ISvx5lfzfxqvzd0000000000.jpg',
+    name: 'Dartford Trail Condo',
+    location: 'Wellington',
+    beds: 3,
+    baths: 2,
+    sqft: '1,300',
+    price: '$300,000',
+    soldPrice: '$300,000',
+    tag: 'Sold',
+    status: 'Sold',
+    description: 'Beautiful condo in Wellington with modern amenities and spacious living areas.',
+    address: '12970 Dartford Trail #4, Wellington, FL 33414',
+    buyer: 'Represented Buyer'
   },
   {
     image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80',
-    name: 'The Meridian Penthouse', location: 'Boca Raton',
-    beds: 4, baths: 4, sqft: '4,100', price: '$4,750,000', tag: 'New'
+    name: 'Port Saint Lucie Property',
+    location: 'Port Saint Lucie',
+    beds: 3,
+    baths: 2,
+    sqft: '1,200',
+    price: '$374,000',
+    soldPrice: '$374,000',
+    tag: 'Sold',
+    status: 'Sold',
+    description: 'Excellent property in Port Saint Lucie with great investment potential.',
+    address: '834 SE Walters Ter, Port Saint Lucie, FL 34983',
+    buyer: 'Represented Buyer'
   },
   {
     image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=80',
-    name: 'Royal Palm Villa', location: 'Palm Beach',
-    beds: 6, baths: 7, sqft: '8,400', price: '$12,500,000', tag: 'Exclusive'
+    name: 'Miami Investment Property',
+    location: 'Miami',
+    beds: 2,
+    baths: 2,
+    sqft: '900',
+    price: '$285,000',
+    soldPrice: '$285,000',
+    tag: 'Sold',
+    status: 'Sold',
+    description: 'Strategic investment property in Miami with strong appreciation potential.',
+    address: '1300 NE 109th Street #207, Miami, FL 33161',
+    buyer: 'Represented Seller'
   },
   {
     image: 'https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=600&q=80',
-    name: 'Waterfront Sanctuary', location: 'Delray Beach',
-    beds: 4, baths: 5, sqft: '5,200', price: '$6,200,000', tag: 'Waterfront'
+    name: 'Miami Estate',
+    location: 'Miami',
+    beds: 4,
+    baths: 3,
+    sqft: '2,500',
+    price: '$780,000',
+    soldPrice: '$780,000',
+    tag: 'Sold',
+    status: 'Sold',
+    description: 'Premium estate property in Miami with excellent location and features.',
+    address: '11290 SW 48 Street, Miami, FL 33165',
+    buyer: 'Represented Seller'
   },
   {
     image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80',
-    name: 'The Grand Residences', location: 'Jupiter',
-    beds: 5, baths: 5, sqft: '5,000', price: '$5,400,000', tag: 'New'
+    name: 'Royal Palm Beach Luxury Home',
+    location: 'Royal Palm Beach',
+    beds: 4,
+    baths: 3,
+    sqft: '2,200',
+    price: '$580,000',
+    soldPrice: '$580,000',
+    tag: 'Sold',
+    status: 'Sold',
+    description: 'Stunning luxury home in Royal Palm Beach with premium finishes.',
+    address: '10273 Showboat Ln, Royal Palm Beach, FL 33411',
+    buyer: 'Represented Buyer'
   },
   {
     image: 'https://images.unsplash.com/photo-1416331108676-a22ccb276e35?w=600&q=80',
-    name: 'Palm Isle Retreat', location: 'Wellington',
-    beds: 3, baths: 3, sqft: '3,600', price: '$2,850,000', tag: 'Golf View'
+    name: 'Fort Lauderdale Property',
+    location: 'Fort Lauderdale',
+    beds: 2,
+    baths: 2,
+    sqft: '1,100',
+    price: '$520,000',
+    soldPrice: 'Coming Soon',
+    tag: 'For Sale',
+    status: 'Available',
+    description: 'Modern property in Fort Lauderdale with excellent amenities.',
+    address: '3301 SW 20th Ct, Fort Lauderdale, FL 33312',
+    buyer: 'Contact for Details'
   },
 ];
 ---
@@ -55,20 +115,30 @@ const listings = [
           <div class="relative overflow-hidden h-56">
             <img src={listing.image} alt={listing.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-            <span class="absolute top-4 left-4 bg-gold text-white font-sans text-xs tracking-widest uppercase px-3 py-1">{listing.tag}</span>
+            <span class={`absolute top-4 left-4 font-sans text-xs tracking-widest uppercase px-3 py-1 ${listing.status === 'Sold' ? 'bg-red-600 text-white' : 'bg-gold text-white'}`}>{listing.tag}</span>
             <div class="absolute bottom-4 left-4">
-              <p class="font-serif text-white text-xl font-light">{listing.price}</p>
+              <p class="font-serif text-white text-xl font-light">{listing.soldPrice}</p>
+              {listing.status === 'Sold' && <p class="font-sans text-gold text-xs">Sold</p>}
             </div>
           </div>
           <div class="p-6">
             <h3 class="font-serif text-white text-xl font-light mb-1">{listing.name}</h3>
-            <p class="font-sans text-gold text-xs tracking-widest uppercase mb-4">&#9679; {listing.location}</p>
+            <p class="font-sans text-gold text-xs tracking-widest uppercase mb-2">&#9679; {listing.location}</p>
+            <p class="font-sans text-white/60 text-xs mb-4">{listing.address}</p>
+            <p class="font-sans text-white/70 text-sm mb-4">{listing.description}</p>
             <div class="flex items-center gap-5 font-sans text-white/70 text-xs mb-6">
               <span>{listing.beds} Beds</span>
               <span>{listing.baths} Baths</span>
               <span>{listing.sqft} sqft</span>
             </div>
-            <a href="/#contact" class="block text-center border border-gold text-gold font-sans text-xs tracking-widest uppercase py-3 hover:bg-gold hover:text-white transition-all duration-300">View Details</a>
+            {listing.status === 'Sold' && (
+              <div class="mb-4 p-3 bg-white/5 border border-gold/30">
+                <p class="font-sans text-xs text-white/60 mb-1"><span class="text-gold">Buyer:</span> {listing.buyer}</p>
+              </div>
+            )}
+            <a href="/#contact" class="block text-center border border-gold text-gold font-sans text-xs tracking-widest uppercase py-3 hover:bg-gold hover:text-white transition-all duration-300">
+              {listing.status === 'Sold' ? 'View Details' : 'Inquire Now'}
+            </a>
           </div>
         </div>
       ))}
@@ -83,7 +153,7 @@ const listings = [
 <!-- Quote Bar -->
 <div class="bg-gold py-10 px-4">
   <div class="max-w-4xl mx-auto text-center">
-    <span class="font-sans text-white text-xs tracking-widest uppercase opacity-70 block mb-3">Danieyis &mdash; Your Palm Beach Broker</span>
+    <span class="font-sans text-white text-xs tracking-widest uppercase opacity-70 block mb-3">Danieyis Jimenez &mdash; Your Palm Beach Broker</span>
     <blockquote class="font-serif text-white text-2xl sm:text-3xl lg:text-4xl font-light italic">
       &ldquo;Your needs, always my priority.&rdquo;
     </blockquote>
