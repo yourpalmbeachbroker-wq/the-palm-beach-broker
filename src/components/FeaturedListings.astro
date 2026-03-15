@@ -96,8 +96,8 @@ const sales = [
     <source src="/2231485-uhd_3840_2160_24fps.mp4" type="video/mp4" />
   </video>
 
-  <!-- Overlay oscuro para contraste -->
-  <div class="absolute inset-0 bg-gradient-to-b from-black/85 via-black/85 to-black/95"></div>
+  <!-- Overlay más claro para que se vea el video -->
+  <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/60"></div>
 
   <!-- Contenido -->
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -117,7 +117,7 @@ const sales = [
 
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {sales.map((sale) => (
-        <article class="group bg-black/75 border border-white/10 flex flex-col backdrop-blur-sm">
+        <article class="group bg-white border border-white/10 flex flex-col backdrop-blur-sm">
           <div class="relative overflow-hidden">
             <img
               src={sale.image}
@@ -125,7 +125,7 @@ const sales = [
               class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105"
               loading="lazy"
             />
-            <span class="absolute top-4 left-4 bg-emerald-500 text-[10px] tracking-[0.25em] uppercase px-3 py-1">
+            <span class="absolute top-4 left-4 bg-emerald-500 text-[10px] tracking-[0.25em] uppercase px-3 py-1 text-white">
               Sold
             </span>
             <span class="absolute top-4 right-4 bg-white/90 text-[10px] tracking-[0.25em] uppercase px-3 py-1 text-black">
@@ -134,13 +134,13 @@ const sales = [
           </div>
 
           <div class="flex-1 p-6 space-y-3">
-            <p class="font-sans text-[11px] tracking-[0.25em] uppercase text-white/60">
+            <p class="font-sans text-[11px] tracking-[0.25em] uppercase text-gold">
               {sale.city}
             </p>
-            <h3 class="font-serif text-lg text-white">
+            <h3 class="font-serif text-lg text-gold">
               {sale.address}
             </h3>
-            <p class="font-sans text-sm text-white/60">
+            <p class="font-sans text-sm text-gold">
               {sale.details}
             </p>
             <p class="font-sans text-sm text-gold">
@@ -153,7 +153,7 @@ const sales = [
               href={sale.zillowUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] uppercase text-white hover:text-gold"
+              class="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] uppercase text-gold hover:text-black"
             >
               View details
               <span aria-hidden="true">↗</span>
@@ -164,5 +164,6 @@ const sales = [
     </div>
   </div>
 </section>
+
 
 
