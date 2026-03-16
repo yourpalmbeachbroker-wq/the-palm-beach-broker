@@ -43,7 +43,7 @@ const sales = [
     details: "4 Bed • 2 Bath • Single Family",
     soldPrice: "$490,000",
     image: "https://photos.zillowstatic.com/fp/e79c14dfb9fd235d1e6f58b86bc7c521-cc_ft_960.webp",
-    zillowUrl: "https://www.zillow.com/homedetails/1410-NW-56th-Ave-Fort-Lauderdale-FL-33313/43040679_zpid/"
+    zillowUrl: "https://www.zillow.com/homedetails/1410-NW-56th-Ave-Fort-Lauderdale-FL-33313/43040679_zpid/?view=public"
   },
   {
     city: "West Palm Beach, FL",
@@ -85,19 +85,16 @@ const sales = [
 ---
 
 <section id="properties" class="relative py-24 overflow-hidden">
-  <!-- Video background -->
+  <!-- Video background sin tono -->
   <video
     autoplay
     muted
     loop
     playsinline
-    class="absolute inset-0 w-full h-full object-cover opacity-25"
+    class="absolute inset-0 w-full h-full object-cover"
   >
     <source src="/2231485-uhd_3840_2160_24fps.mp4" type="video/mp4" />
   </video>
-
-  <!-- Overlay más claro para que se vea el video -->
-  <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/60"></div>
 
   <!-- Contenido -->
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -109,7 +106,7 @@ const sales = [
         <h2 class="font-serif text-3xl md:text-4xl text-white mb-3">
           Featured Properties
         </h2>
-        <p class="font-sans text-sm text-white/70 max-w-xl">
+        <p class="font-sans text-sm text-white/80 max-w-xl">
           A selection of homes successfully represented by Danieyis across Palm Beach, Miami and South Florida, highlighting a proven track record of closed transactions.
         </p>
       </div>
@@ -117,7 +114,7 @@ const sales = [
 
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {sales.map((sale) => (
-        <article class="group bg-white border border-white/10 flex flex-col backdrop-blur-sm">
+        <article class="group bg-emerald-800/90 border border-gold/70 flex flex-col">
           <div class="relative overflow-hidden">
             <img
               src={sale.image}
@@ -128,7 +125,7 @@ const sales = [
             <span class="absolute top-4 left-4 bg-emerald-500 text-[10px] tracking-[0.25em] uppercase px-3 py-1 text-white">
               Sold
             </span>
-            <span class="absolute top-4 right-4 bg-white/90 text-[10px] tracking-[0.25em] uppercase px-3 py-1 text-black">
+            <span class="absolute top-4 right-4 bg-gold text-[10px] tracking-[0.25em] uppercase px-3 py-1 text-black">
               {sale.role}
             </span>
           </div>
@@ -137,13 +134,13 @@ const sales = [
             <p class="font-sans text-[11px] tracking-[0.25em] uppercase text-gold">
               {sale.city}
             </p>
-            <h3 class="font-serif text-lg text-gold">
+            <h3 class="font-serif text-lg text-white">
               {sale.address}
             </h3>
-            <p class="font-sans text-sm text-gold">
+            <p class="font-sans text-sm text-white/80">
               {sale.details}
             </p>
-            <p class="font-sans text-sm text-gold">
+            <p class="font-sans text-sm text-white/90">
               Sold for {sale.soldPrice}
             </p>
           </div>
@@ -153,7 +150,7 @@ const sales = [
               href={sale.zillowUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] uppercase text-gold hover:text-black"
+              class="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] uppercase text-gold hover:text-white"
             >
               View details
               <span aria-hidden="true">↗</span>
@@ -164,6 +161,3 @@ const sales = [
     </div>
   </div>
 </section>
-
-
-
