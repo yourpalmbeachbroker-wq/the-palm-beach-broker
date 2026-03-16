@@ -27,9 +27,10 @@ const {
       #splash.gone { opacity:0;visibility:hidden;pointer-events:none; }
       .sp-sub { font-family:'Montserrat',sans-serif;font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;color:#c9a84c;margin-bottom:1.2rem; }
       .sp-line { width:50px;height:1px;background:#c9a84c;margin:0 auto 1.5rem; }
-      .sp-title { font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:300;color:#fff;text-align:center;line-height:1.1;margin-bottom:.4rem; }
+      .sp-title { font-family:'Cormorant Garamond',serif;font-size:clamp(2.3rem,5vw,4.2rem);font-weight:300;color:#fff;text-align:center;line-height:1.1;margin-bottom:.8rem; }
       .sp-title em { color:#c9a84c;font-style:italic; }
-      .sp-tag { font-family:'Montserrat',sans-serif;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:3rem; }
+      .sp-tag { font-family:'Montserrat',sans-serif;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:#c9a84c;margin-bottom:2.2rem;text-align:center; }
+      .sp-divider { width:70px;height:1px;background:#c9a84c;margin:0 auto 2.2rem; }
       .sp-btns { display:flex;gap:1rem;flex-wrap:wrap;justify-content:center; }
       .sp-btn { font-family:'Montserrat',sans-serif;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;padding:.9rem 2.2rem;cursor:pointer;transition:all .3s;text-decoration:none;border:none; }
       .sp-btn-a { background:#c9a84c;color:#fff; }
@@ -50,7 +51,17 @@ const {
     <!-- Splash Screen -->
     <div id="splash">
       <h1 class="sp-title">THE PALM BEACH BROKER</h1>
-      <p class="sp-tag">Real estate with integrity</p>
+
+      <p class="sp-tag">REAL ESTATE WITH INTEGRITY</p>
+
+      <div class="sp-divider"></div>
+
+      <div class="sp-btns">
+        <a href="/#properties" class="sp-btn sp-btn-a" onclick="hideSplash()">Browse Properties</a>
+        <a href="/#contact" class="sp-btn sp-btn-b" onclick="hideSplash()">Get In Touch</a>
+      </div>
+
+      <button class="sp-skip" onclick="hideSplash()">Skip Intro &rsaquo;</button>
     </div>
 
     <slot />
