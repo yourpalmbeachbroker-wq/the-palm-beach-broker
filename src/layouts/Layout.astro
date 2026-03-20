@@ -23,7 +23,11 @@ const {
     <style>
       html { scroll-behavior: smooth; }
       * { -webkit-font-smoothing: antialiased; }
-      #splash { position:fixed;inset:0;z-index:9999;background:#080808;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.8s ease,visibility 0.8s ease; }
+      #splash {
+        position:fixed;inset:0;z-index:9999;background:#080808;
+        display:flex;flex-direction:column;align-items:center;justify-content:center;
+        transition:opacity 0.8s ease,visibility 0.8s ease;
+      }
       #splash.gone { opacity:0;visibility:hidden;pointer-events:none; }
       .sp-sub { font-family:'Montserrat',sans-serif;font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;color:#c9a84c;margin-bottom:1.2rem; }
       .sp-line { width:50px;height:1px;background:#c9a84c;margin:0 auto 1.5rem; }
@@ -40,14 +44,14 @@ const {
       .sp-skip { position:absolute;bottom:1.5rem;right:1.5rem;font-family:'Montserrat',sans-serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.25);cursor:pointer;background:none;border:none;transition:color .3s; }
       .sp-skip:hover { color:#c9a84c; }
 
-      /* Botón flotante WhatsApp (tamaño similar al botón de teléfono del navegador) */
+      /* Botón flotante WhatsApp ajustado */
       .wa-btn {
         position:fixed;
-        bottom:1.5rem;
+        bottom:5rem;          /* más arriba para que no se monte con el icono azul del navegador */
         right:1.5rem;
         z-index:1000;
-        width:58px;
-        height:58px;
+        width:54px;           /* tamaño similar al icono de teléfono del navegador */
+        height:54px;
         background:#25D366;
         border-radius:50%;
         display:flex;
@@ -62,8 +66,8 @@ const {
         box-shadow:0 6px 26px rgba(0,0,0,.5);
       }
       .wa-btn svg {
-        width:30px;
-        height:30px;
+        width:28px;
+        height:28px;
         fill:#fff;
       }
       .wa-tip {
@@ -104,7 +108,7 @@ const {
 
     <slot />
 
-    <!-- WhatsApp Float (único botón flotante) -->
+    <!-- WhatsApp Float -->
     <a
       href="https://wa.me/17869758002"
       target="_blank"
@@ -144,3 +148,4 @@ const {
 
   </body>
 </html>
+
