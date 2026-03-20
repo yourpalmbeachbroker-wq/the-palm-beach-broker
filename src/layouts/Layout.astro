@@ -45,12 +45,12 @@ const {
       .sp-skip:hover { color:#c9a84c; }
 
       /* Botón flotante WhatsApp ajustado */
-      .wa-btn {
+           .wa-btn {
         position:fixed;
-        bottom:5rem;          /* más arriba para que no se monte con el icono azul del navegador */
-        right:1.5rem;
+        bottom:4.5rem;    /* ligeramente más abajo para alinearse mejor */
+        right:1.2rem;     /* un poco más a la derecha para coincidir con el icono azul */
         z-index:1000;
-        width:54px;           /* tamaño similar al icono de teléfono del navegador */
+        width:54px;
         height:54px;
         background:#25D366;
         border-radius:50%;
@@ -61,6 +61,7 @@ const {
         transition:transform .3s,box-shadow .3s;
         text-decoration:none;
       }
+
       .wa-btn:hover {
         transform:scale(1.1);
         box-shadow:0 6px 26px rgba(0,0,0,.5);
