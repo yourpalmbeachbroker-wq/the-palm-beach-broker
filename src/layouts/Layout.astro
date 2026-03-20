@@ -44,11 +44,11 @@ const {
       .sp-skip { position:absolute;bottom:1.5rem;right:1.5rem;font-family:'Montserrat',sans-serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.25);cursor:pointer;background:none;border:none;transition:color .3s; }
       .sp-skip:hover { color:#c9a84c; }
 
-      /* Botón flotante WhatsApp ajustado */
-           .wa-btn {
+      /* WhatsApp button: tamaño y posición afinados */
+      .wa-btn {
         position:fixed;
-        bottom:4.5rem;    /* ligeramente más abajo para alinearse mejor */
-        right:1.2rem;     /* un poco más a la derecha para coincidir con el icono azul */
+        bottom:4.3rem;      /* altura similar al icono azul del navegador */
+        right:0.8rem;       /* más a la derecha para separarse del contenido */
         z-index:1000;
         width:54px;
         height:54px;
@@ -61,7 +61,6 @@ const {
         transition:transform .3s,box-shadow .3s;
         text-decoration:none;
       }
-
       .wa-btn:hover {
         transform:scale(1.1);
         box-shadow:0 6px 26px rgba(0,0,0,.5);
@@ -149,4 +148,3 @@ const {
 
   </body>
 </html>
-
