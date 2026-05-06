@@ -11,6 +11,36 @@ const {
 
 const sales = [
   {
+    city: "Highland Beach, FL",
+    role: "Seller Representation",
+    address: "1102 Russell Dr",
+    details: "4 Bed • 5 Bath • Single Family",
+    soldPrice: "Recently Sold",
+    image: "/assets/imagen1.webp",
+    zillowUrl: "https://www.zillow.com/homedetails/1102-Russell-Dr-Highland-Beach-FL-33487/46797323_zpid/",
+    featuredNew: true
+  },
+  {
+    city: "Lake Clarke Shores, FL",
+    role: "Seller Representation",
+    address: "7990 W Lake Dr",
+    details: "4 Bed • 3 Bath • Single Family",
+    soldPrice: "Recently Sold",
+    image: "/assets/imagen2.webp",
+    zillowUrl: "https://www.zillow.com/homedetails/7990-W-Lake-Dr-Lake-Clarke-Shores-FL-33406/46821860_zpid/",
+    featuredNew: true
+  },
+  {
+    city: "Palm Beach Gardens, FL",
+    role: "Seller Representation",
+    address: "14057 Cocoa Plum Rd",
+    details: "5 Bed • 6 Bath • Single Family",
+    soldPrice: "Recently Sold",
+    image: "/assets/imagen3.png",
+    zillowUrl: "https://www.zillow.com/homedetails/14057-Cocoa-Plum-Rd-Palm-Beach-Gardens-FL-33418/103454550_zpid/",
+    featuredNew: true
+  },
+  {
     city: "Wellington, FL",
     role: "Buyer Representation",
     address: "12970 Dartford Trl APT 4",
@@ -326,6 +356,77 @@ const allReviews = [...reviews, ...reviews];
       }
 
       .animate-scroll:hover { animation-play-state: paused; }
+
+      .marble-values {
+        background:
+          radial-gradient(circle at 20% 20%, rgba(209, 169, 93, 0.07), transparent 34%),
+          radial-gradient(circle at 80% 30%, rgba(137, 168, 146, 0.11), transparent 36%),
+          radial-gradient(circle at 30% 80%, rgba(95, 126, 108, 0.12), transparent 34%),
+          linear-gradient(135deg, #11231d 0%, #1a3129 35%, #213c33 65%, #162821 100%);
+      }
+
+      .value-card {
+        background:
+          linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)),
+          linear-gradient(160deg, rgba(95,126,108,0.10), rgba(17,35,29,0.14));
+        border: 1px solid rgba(201, 168, 76, 0.16);
+        min-height: 132px;
+      }
+
+      .properties-overlay {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(to bottom, rgba(0,0,0,0.34), rgba(0,0,0,0.44)),
+          radial-gradient(circle at center, rgba(0,0,0,0.10), rgba(0,0,0,0.22) 65%, rgba(0,0,0,0.30));
+        backdrop-filter: blur(2px);
+      }
+
+      .just-sold-banner {
+        position: absolute;
+        top: 18px;
+        left: -120%;
+        z-index: 8;
+        background: linear-gradient(90deg, rgba(201,168,76,0.96), rgba(238,221,171,0.96), rgba(201,168,76,0.96));
+        color: #111;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.58rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        padding: 0.75rem 1.2rem;
+        white-space: nowrap;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+        animation: soldSweep 4s ease-in-out forwards;
+      }
+
+      @keyframes soldSweep {
+        0% { left: -120%; opacity: 0; }
+        10% { opacity: 1; }
+        28% { left: 8%; opacity: 1; }
+        72% { left: 8%; opacity: 1; }
+        100% { left: 120%; opacity: 0; }
+      }
+
+      .about-elegant-bg {
+        background:
+          radial-gradient(circle at 15% 20%, rgba(201,168,76,0.16), transparent 30%),
+          radial-gradient(circle at 82% 18%, rgba(255,255,255,0.10), transparent 24%),
+          radial-gradient(circle at 70% 70%, rgba(92,121,109,0.18), transparent 30%),
+          linear-gradient(125deg, rgba(10,13,12,0.94), rgba(22,28,27,0.86) 40%, rgba(18,34,30,0.84) 70%, rgba(12,16,15,0.93));
+      }
+
+      .testimonials-photo-bg {
+        position: absolute;
+        inset: 0;
+        background-image:
+          radial-gradient(circle at center, rgba(0,0,0,0.14), rgba(0,0,0,0.42) 62%, rgba(0,0,0,0.56)),
+          radial-gradient(circle at left center, rgba(201,168,76,0.24), transparent 30%),
+          radial-gradient(circle at right center, rgba(69,110,88,0.28), transparent 32%),
+          url('/assets/reviewphoto.jpeg');
+        background-size: cover;
+        background-position: center;
+        filter: saturate(1.02);
+      }
     </style>
   </head>
 
@@ -430,28 +531,28 @@ const allReviews = [...reviews, ...reviews];
       </div>
     </section>
 
-    <section class="py-12 bg-forest">
+    <section class="py-10 marble-values">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-10">
+        <div class="text-center mb-8">
           <p class="font-sans text-gold tracking-widest uppercase text-sm mb-2">Our Values</p>
           <h3 class="font-serif text-3xl text-white font-light">What Defines Us</h3>
           <div class="w-12 h-px bg-gold mx-auto mt-4"></div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-gold/20">
-          <div class="bg-forest text-center px-5 py-7 group hover:bg-forest/80 transition-colors duration-300">
-            <span class="block font-serif text-5xl text-gold mb-4">✦</span>
-            <h4 class="font-sans text-white tracking-widest uppercase text-lg font-semibold mb-3">Integrity</h4>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div class="value-card text-center px-5 py-6 group transition-colors duration-300">
+            <span class="block font-serif text-4xl text-gold mb-3">✦</span>
+            <h4 class="font-sans text-white tracking-widest uppercase text-base font-semibold mb-2">Integrity</h4>
             <div class="w-6 h-px bg-gold/50 mx-auto"></div>
           </div>
-          <div class="bg-forest text-center px-5 py-7 group hover:bg-forest/80 transition-colors duration-300 border-x border-gold/20">
-            <span class="block font-serif text-5xl text-gold mb-4">✦</span>
-            <h4 class="font-sans text-white tracking-widest uppercase text-lg font-semibold mb-3">Client Commitment</h4>
+          <div class="value-card text-center px-5 py-6 group transition-colors duration-300">
+            <span class="block font-serif text-4xl text-gold mb-3">✦</span>
+            <h4 class="font-sans text-white tracking-widest uppercase text-base font-semibold mb-2">Client Commitment</h4>
             <div class="w-6 h-px bg-gold/50 mx-auto"></div>
           </div>
-          <div class="bg-forest text-center px-5 py-7 group hover:bg-forest/80 transition-colors duration-300">
-            <span class="block font-serif text-5xl text-gold mb-4">✦</span>
-            <h4 class="font-sans text-white tracking-widest uppercase text-lg font-semibold mb-3">Results</h4>
+          <div class="value-card text-center px-5 py-6 group transition-colors duration-300">
+            <span class="block font-serif text-4xl text-gold mb-3">✦</span>
+            <h4 class="font-sans text-white tracking-widest uppercase text-base font-semibold mb-2">Results</h4>
             <div class="w-6 h-px bg-gold/50 mx-auto"></div>
           </div>
         </div>
@@ -462,6 +563,7 @@ const allReviews = [...reviews, ...reviews];
       <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
         <source src="/2231485-uhd_3840_2160_24fps.mp4" type="video/mp4" />
       </video>
+      <div class="properties-overlay"></div>
 
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-12">
@@ -480,7 +582,11 @@ const allReviews = [...reviews, ...reviews];
 
         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {sales.map((sale) => (
-            <article class="group bg-emerald-800/90 border border-gold/70 flex flex-col">
+            <article class="group relative bg-emerald-800/90 border border-gold/70 flex flex-col overflow-hidden">
+              {sale.featuredNew && (
+                <div class="just-sold-banner">Ultimos Listings Vendidos</div>
+              )}
+
               <div class="relative overflow-hidden">
                 <img
                   src={sale.image}
@@ -520,12 +626,9 @@ const allReviews = [...reviews, ...reviews];
       </div>
     </section>
 
-    <section
-      id="about"
-      class="relative py-20 overflow-hidden"
-      style="background-image: url('https://images.unsplash.com/photo-1600047508788-786f3865b4ef?w=1920&q=80'); background-size: cover; background-position: center; background-attachment: fixed;"
-    >
-      <div class="absolute inset-0 bg-gradient-to-r from-stone-900/90 via-stone-800/75 to-stone-900/85"></div>
+    <section id="about" class="relative py-20 overflow-hidden about-elegant-bg">
+      <div class="absolute inset-0 bg-gradient-to-r from-black/58 via-black/36 to-black/54"></div>
+      <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(120deg, rgba(255,255,255,0.07) 0%, transparent 18%, transparent 52%, rgba(201,168,76,0.12) 70%, transparent 100%);"></div>
 
       <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -616,18 +719,21 @@ const allReviews = [...reviews, ...reviews];
       </div>
     </section>
 
-    <section id="testimonials" class="py-24 bg-forest overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 text-center">
+    <section id="testimonials" class="relative py-24 overflow-hidden">
+      <div class="testimonials-photo-bg"></div>
+      <div class="absolute inset-0 bg-black/18"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 text-center">
         <p class="text-gold tracking-[0.3em] uppercase text-xs font-sans font-light mb-4">Testimonials</p>
         <h2 class="font-serif text-3xl sm:text-4xl text-white font-light">Client Experiences</h2>
         <div class="w-16 h-px bg-gold mx-auto mt-6"></div>
       </div>
 
-      <div class="relative w-full overflow-hidden">
+      <div class="relative z-10 w-full overflow-hidden">
         <div class="flex animate-scroll whitespace-nowrap">
           {allReviews.map((review) => (
             <div class="inline-block w-[350px] sm:w-[450px] px-4 whitespace-normal">
-              <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-8 h-full flex flex-col justify-between hover:border-gold/50 transition-colors duration-500">
+              <div class="bg-black/28 backdrop-blur-md border border-white/10 p-8 h-full flex flex-col justify-between hover:border-gold/50 transition-colors duration-500">
                 <div>
                   <div class="flex gap-1 mb-6">
                     {[...Array(review.rating)].map(() => (
@@ -636,7 +742,7 @@ const allReviews = [...reviews, ...reviews];
                       </svg>
                     ))}
                   </div>
-                  <p class="font-sans text-white/80 text-lg leading-relaxed italic mb-8">"{review.content}"</p>
+                  <p class="font-sans text-white/85 text-lg leading-relaxed italic mb-8">"{review.content}"</p>
                 </div>
 
                 <div class="flex items-center gap-4 border-t border-white/10 pt-6 mt-auto">
@@ -645,7 +751,7 @@ const allReviews = [...reviews, ...reviews];
                   </div>
                   <div>
                     <p class="font-serif text-white text-base tracking-wide uppercase">{review.name}</p>
-                    <p class="font-sans text-gold/60 text-xs tracking-widest uppercase mt-1">{review.role}</p>
+                    <p class="font-sans text-gold/70 text-xs tracking-widest uppercase mt-1">{review.role}</p>
                   </div>
                 </div>
               </div>
@@ -654,7 +760,7 @@ const allReviews = [...reviews, ...reviews];
         </div>
       </div>
 
-      <div class="text-center mt-16">
+      <div class="relative z-10 text-center mt-16">
         <a
           href="https://www.google.com/search?q=Danieyis+Jimenez+The+Palm+Beach+Broker+Reviews"
           target="_blank"
