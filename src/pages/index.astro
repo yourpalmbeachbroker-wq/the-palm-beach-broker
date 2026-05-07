@@ -649,52 +649,7 @@ const allReviews = [...reviews, ...reviews];
           </div>
         </div>
 
-        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3" id="properties-grid">
-          {sales.slice(0, 6).map((sale, i) => (
-            <article class="group relative bg-emerald-800/90 border border-gold/70 flex flex-col overflow-hidden">
-              {sale.featuredNew && (
-                <div class="just-sold-banner sale-badge-hidden">RECIÉN VENDIDA</div>
-              )}
-
-              <div class="relative overflow-hidden">
-                <img
-                  src={sale.image}
-                  alt={sale.address + ", " + sale.city}
-                  class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <span class="absolute top-4 left-4 bg-emerald-500 text-[10px] tracking-[0.25em] uppercase px-3 py-1 text-white">
-                  Sold
-                </span>
-                <span class="absolute top-4 right-4 bg-gold text-[10px] tracking-[0.25em] uppercase px-3 py-1 text-black">
-                  {sale.role}
-                </span>
-              </div>
-
-              <div class="flex-1 p-6 space-y-3">
-                <p class="font-sans text-[11px] tracking-[0.25em] uppercase text-gold">{sale.city}</p>
-                <h3 class="font-serif text-lg text-white">{sale.address}</h3>
-                <p class="font-sans text-sm text-white/80">{sale.details}</p>
-                <p class="font-sans text-sm text-white/90">Sold for {sale.soldPrice}</p>
-              </div>
-
-              <div class="px-6 pb-6 mt-auto">
-                <a
-                  href={sale.zillowUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] uppercase text-gold hover:text-white"
-                >
-                  View details
-                  <span aria-hidden="true">↗</span>
-                </a>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <div id="properties-extra" class="hidden mt-8">
-          <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3" id="properties-grid">
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {sales.slice(0, 6).map((sale) => (
             <article class="group relative bg-emerald-800/90 border border-gold/70 flex flex-col overflow-hidden">
               {sale.featuredNew && (
