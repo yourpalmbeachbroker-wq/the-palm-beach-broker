@@ -416,32 +416,39 @@ const allReviews = [...reviews, ...reviews];
 
       .about-elegant-bg {
         background:
-          linear-gradient(135deg, rgba(201,168,76,0.12) 0%, transparent 40%),
-          linear-gradient(225deg, rgba(201,168,76,0.08) 0%, transparent 35%),
-          radial-gradient(ellipse at 0% 100%, rgba(201,168,76,0.18) 0%, transparent 45%),
-          radial-gradient(ellipse at 100% 0%, rgba(92,121,109,0.22) 0%, transparent 50%),
-          linear-gradient(160deg, #0a0f0e 0%, #111e1a 30%, #0e1a16 55%, #0a0f0e 100%);
+          radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201,168,76,0.13) 0%, transparent 60%),
+          radial-gradient(ellipse 80% 50% at 50% 100%, rgba(201,168,76,0.10) 0%, transparent 60%),
+          radial-gradient(ellipse 120% 80% at 0% 50%, rgba(95,140,115,0.18) 0%, transparent 50%),
+          radial-gradient(ellipse 120% 80% at 100% 50%, rgba(95,140,115,0.14) 0%, transparent 50%),
+          linear-gradient(180deg, #0d2218 0%, #112b1e 25%, #163524 50%, #112b1e 75%, #0d2218 100%);
+        border-top: 2px solid rgba(201,168,76,0.65);
+        border-bottom: 2px solid rgba(201,168,76,0.65);
         position: relative;
+        overflow: hidden;
       }
       .about-elegant-bg::before {
         content: '';
         position: absolute;
-        inset: 0;
-        background-image:
-          repeating-linear-gradient(
-            -45deg,
-            transparent,
-            transparent 60px,
-            rgba(201,168,76,0.028) 60px,
-            rgba(201,168,76,0.028) 61px
-          ),
-          repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 80px,
-            rgba(92,121,109,0.03) 80px,
-            rgba(92,121,109,0.03) 81px
-          );
+        top: -40%;
+        left: -20%;
+        width: 70%;
+        height: 180%;
+        background: transparent;
+        border-radius: 50%;
+        border: 1px solid rgba(201,168,76,0.10);
+        pointer-events: none;
+        z-index: 0;
+      }
+      .about-elegant-bg::after {
+        content: '';
+        position: absolute;
+        top: -40%;
+        right: -20%;
+        width: 70%;
+        height: 180%;
+        background: transparent;
+        border-radius: 50%;
+        border: 1px solid rgba(201,168,76,0.08);
         pointer-events: none;
         z-index: 0;
       }
@@ -681,7 +688,11 @@ const allReviews = [...reviews, ...reviews];
     </section>
 
     <section id="about" class="relative py-20 overflow-hidden about-elegant-bg">
-      <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-black/40" style="z-index:1"></div>
+      <!-- Decorative gold arcs -->
+      <div class="about-deco-arc-1" style="position:absolute;top:-60px;left:-80px;width:420px;height:420px;border-radius:50%;border:1.5px solid rgba(201,168,76,0.13);z-index:0;pointer-events:none;"></div>
+      <div class="about-deco-arc-2" style="position:absolute;bottom:-80px;right:-60px;width:360px;height:360px;border-radius:50%;border:1px solid rgba(201,168,76,0.10);z-index:0;pointer-events:none;"></div>
+      <div class="about-deco-arc-3" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;border-radius:50%;border:1px solid rgba(201,168,76,0.055);z-index:0;pointer-events:none;"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/45 via-black/10 to-black/35" style="z-index:1"></div>
       <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(120deg, rgba(255,255,255,0.07) 0%, transparent 18%, transparent 52%, rgba(201,168,76,0.12) 70%, transparent 100%);"></div>
 
       <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
