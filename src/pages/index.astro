@@ -11,28 +11,37 @@ const {
 
 const sales = [
   {
+    city: "Port Saint Lucie, FL",
+    role: "Buyer Representation",
+    address: "10209 NW Field Flower Trl #231",
+    details: "3 Bed • 4 Bath • Single Family",
+    soldPrice: "$629,000",
+    image: "https://photos.zillowstatic.com/fp/7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b-uncropped_scaled_within_1536_1152.webp",
+    zillowUrl: "https://www.zillow.com/homedetails/10209-NW-Field-Flower-Trl-231-Port-Saint-Lucie-FL-34987/458406185_zpid/"
+  },
+  {
     city: "Highland Beach, FL",
-    role: "Seller Representation",
+    role: "Buyer Representation",
     address: "1102 Russell Dr",
     details: "4 Bed • 5 Bath • Single Family",
-    soldPrice: "Recently Sold",
+    soldPrice: "$850,000",
     image: "/assets/imagen1.webp",
     zillowUrl: "https://www.zillow.com/homedetails/1102-Russell-Dr-Highland-Beach-FL-33487/46797323_zpid/",
     featuredNew: true
   },
   {
     city: "Lake Clarke Shores, FL",
-    role: "Seller Representation",
+    role: "Buyer Representation",
     address: "7990 W Lake Dr",
     details: "4 Bed • 3 Bath • Single Family",
-    soldPrice: "Recently Sold",
+    soldPrice: "$725,000",
     image: "/assets/imagen2.webp",
     zillowUrl: "https://www.zillow.com/homedetails/7990-W-Lake-Dr-Lake-Clarke-Shores-FL-33406/46821860_zpid/",
     featuredNew: true
   },
   {
     city: "Palm Beach Gardens, FL",
-    role: "Seller Representation",
+    role: "Buyer Representation",
     address: "14057 Cocoa Plum Rd",
     details: "5 Bed • 6 Bath • Single Family",
     soldPrice: "Recently Sold",
@@ -60,7 +69,7 @@ const sales = [
   },
   {
     city: "Miami, FL",
-    role: "Seller Representation",
+    role: "Buyer Representation",
     address: "11290 SW 48th St",
     details: "4 Bed • 3 Bath • Single Family",
     soldPrice: "$780,000",
@@ -122,7 +131,6 @@ const sales = [
     zillowUrl: "https://www.zillow.com/homedetails/341-Lake-Frances-Dr-West-Palm-Beach-FL-33411/46535992_zpid/"
   }
 ];
-
 const partners = [
   { name: 'Zillow', url: 'https://www.zillow.com/', logo: '/logos/zillow.png' },
   { name: 'InvestorLift', url: 'https://investorlift.com/marketplace/', logo: '/logos/investorlift.png' },
@@ -377,8 +385,8 @@ const allReviews = [...reviews, ...reviews];
         position: absolute;
         inset: 0;
         background:
-          linear-gradient(to bottom, rgba(0,0,0,0.34), rgba(0,0,0,0.44)),
-          radial-gradient(circle at center, rgba(0,0,0,0.10), rgba(0,0,0,0.22) 65%, rgba(0,0,0,0.30));
+          linear-gradient(to bottom, rgba(0,0,0,0.46), rgba(0,0,0,0.58)),
+          radial-gradient(circle at center, rgba(0,0,0,0.15), rgba(0,0,0,0.30) 65%, rgba(0,0,0,0.42));
         backdrop-filter: blur(2px);
       }
 
@@ -500,7 +508,7 @@ const allReviews = [...reviews, ...reviews];
         <a href="/#properties" class="sp-btn sp-btn-a" onclick="hideSplash()">Browse Properties</a>
         <a href="/#contact" class="sp-btn sp-btn-b" onclick="hideSplash()">Get In Touch</a>
       </div>
-      <button class="sp-skip" onclick="hideSplash()">Skip Intro ›</button>
+      <button class="sp-skip" onclick="hideSplash()">Skip Intro âº</button>
     </div>
 
     <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" id="main-nav">
@@ -602,17 +610,17 @@ const allReviews = [...reviews, ...reviews];
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
           <div class="value-card text-center px-4 py-4 group transition-colors duration-300">
-            <span class="block font-serif text-3xl text-gold mb-2">✦</span>
+            <span class="block font-serif text-3xl text-gold mb-2">â¦</span>
             <h4 class="font-sans tracking-widest uppercase text-base font-semibold mb-2 value-label-shimmer">Integrity</h4>
             <div class="w-6 h-px bg-gold/50 mx-auto"></div>
           </div>
           <div class="value-card text-center px-4 py-4 group transition-colors duration-300">
-            <span class="block font-serif text-3xl text-gold mb-2">✦</span>
+            <span class="block font-serif text-3xl text-gold mb-2">â¦</span>
             <h4 class="font-sans tracking-widest uppercase text-base font-semibold mb-2 value-label-shimmer">Client Commitment</h4>
             <div class="w-6 h-px bg-gold/50 mx-auto"></div>
           </div>
           <div class="value-card text-center px-4 py-4 group transition-colors duration-300">
-            <span class="block font-serif text-3xl text-gold mb-2">✦</span>
+            <span class="block font-serif text-3xl text-gold mb-2">â¦</span>
             <h4 class="font-sans tracking-widest uppercase text-base font-semibold mb-2 value-label-shimmer">Results</h4>
             <div class="w-6 h-px bg-gold/50 mx-auto"></div>
           </div>
@@ -641,8 +649,8 @@ const allReviews = [...reviews, ...reviews];
           </div>
         </div>
 
-        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {sales.map((sale) => (
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3" id="properties-grid">
+          {sales.slice(0, 6).map((sale, i) => (
             <article class="group relative bg-emerald-800/90 border border-gold/70 flex flex-col overflow-hidden">
               {sale.featuredNew && (
                 <div class="just-sold-banner sale-badge-hidden">RECIÉN VENDIDA</div>
@@ -683,6 +691,58 @@ const allReviews = [...reviews, ...reviews];
               </div>
             </article>
           ))}
+        </div>
+
+        <div id="properties-extra" class="hidden mt-8">
+          <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {sales.slice(6).map((sale) => (
+              <article class="group relative bg-emerald-800/90 border border-gold/70 flex flex-col overflow-hidden">
+                <div class="relative overflow-hidden">
+                  <img
+                    src={sale.image}
+                    alt={sale.address + ", " + sale.city}
+                    class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <span class="absolute top-4 left-4 bg-emerald-500 text-[10px] tracking-[0.25em] uppercase px-3 py-1 text-white">
+                    Sold
+                  </span>
+                  <span class="absolute top-4 right-4 bg-gold text-[10px] tracking-[0.25em] uppercase px-3 py-1 text-black">
+                    {sale.role}
+                  </span>
+                </div>
+
+                <div class="flex-1 p-6 space-y-3">
+                  <p class="font-sans text-[11px] tracking-[0.25em] uppercase text-gold">{sale.city}</p>
+                  <h3 class="font-serif text-lg text-white">{sale.address}</h3>
+                  <p class="font-sans text-sm text-white/80">{sale.details}</p>
+                  <p class="font-sans text-sm text-white/90">Sold for {sale.soldPrice}</p>
+                </div>
+
+                <div class="px-6 pb-6 mt-auto">
+                  <a
+                    href={sale.zillowUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] uppercase text-gold hover:text-white"
+                  >
+                    View details
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div class="text-center mt-12">
+          <button
+            id="view-more-btn"
+            class="inline-block border border-gold text-gold px-10 py-4 font-sans text-xs tracking-[0.3em] uppercase hover:bg-gold hover:text-black transition-all duration-300"
+            onclick="document.getElementById('properties-extra').classList.remove('hidden'); this.style.display='none';"
+          >
+            VIEW MORE
+          </button>
         </div>
       </div>
     </section>
@@ -958,10 +1018,10 @@ const allReviews = [...reviews, ...reviews];
     <footer class="bg-black text-white py-5">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h3 class="font-serif text-xl mb-1">THE PALM BEACH BROKER</h3>
-        <p class="text-white/70 text-xs mb-1">Danieyis Jimenez · Broker Associate | CGI Realty</p>
+        <p class="text-white/70 text-xs mb-1">Danieyis Jimenez Â· Broker Associate | CGI Realty</p>
         <p class="text-white/60 text-xs mb-1">Your trusted real estate specialist in Palm Beach, Florida.</p>
         <p class="text-white/60 text-xs mb-3">Client centered. Results driven.</p>
-        <p class="text-white/40 text-xs">© {new Date().getFullYear()} The Palm Beach Broker. All rights reserved.</p>
+        <p class="text-white/40 text-xs">Â© {new Date().getFullYear()} The Palm Beach Broker. All rights reserved.</p>
       </div>
     </footer>
 
@@ -1044,7 +1104,7 @@ const allReviews = [...reviews, ...reviews];
       });
     
 
-  // IntersectionObserver for "RECIÉN VENDIDA" sale badges
+  // IntersectionObserver for "RECIÃN VENDIDA" sale badges
   (function() {
     function initSaleBadges() {
       const badges = document.querySelectorAll('.just-sold-banner');
