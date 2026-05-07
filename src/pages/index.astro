@@ -416,10 +416,34 @@ const allReviews = [...reviews, ...reviews];
 
       .about-elegant-bg {
         background:
-          radial-gradient(circle at 15% 20%, rgba(201,168,76,0.16), transparent 30%),
-          radial-gradient(circle at 82% 18%, rgba(255,255,255,0.10), transparent 24%),
-          radial-gradient(circle at 70% 70%, rgba(92,121,109,0.18), transparent 30%),
-          linear-gradient(125deg, rgba(10,13,12,0.94), rgba(22,28,27,0.86) 40%, rgba(18,34,30,0.84) 70%, rgba(12,16,15,0.93));
+          linear-gradient(135deg, rgba(201,168,76,0.12) 0%, transparent 40%),
+          linear-gradient(225deg, rgba(201,168,76,0.08) 0%, transparent 35%),
+          radial-gradient(ellipse at 0% 100%, rgba(201,168,76,0.18) 0%, transparent 45%),
+          radial-gradient(ellipse at 100% 0%, rgba(92,121,109,0.22) 0%, transparent 50%),
+          linear-gradient(160deg, #0a0f0e 0%, #111e1a 30%, #0e1a16 55%, #0a0f0e 100%);
+        position: relative;
+      }
+      .about-elegant-bg::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image:
+          repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 60px,
+            rgba(201,168,76,0.028) 60px,
+            rgba(201,168,76,0.028) 61px
+          ),
+          repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 80px,
+            rgba(92,121,109,0.03) 80px,
+            rgba(92,121,109,0.03) 81px
+          );
+        pointer-events: none;
+        z-index: 0;
       }
 
       .testimonials-photo-bg {
@@ -487,7 +511,7 @@ const allReviews = [...reviews, ...reviews];
           <div class="hidden md:flex items-center gap-8">
             <a href="/#properties" class="font-sans text-white/80 tracking-widest uppercase text-xs hover:text-gold transition-colors duration-300">Properties</a>
             <a href="/#about" class="font-sans text-white/80 tracking-widest uppercase text-xs hover:text-gold transition-colors duration-300">About</a>
-            <a href="/#lifestyle" class="font-sans text-white/80 tracking-widest uppercase text-xs hover:text-gold transition-colors duration-300">Lifestyle</a>
+            <a href="#testimonials" class="font-sans text-white/80 tracking-widest uppercase text-xs hover:text-gold transition-colors duration-300">Reviews</a>
             <a href="/#contact" class="font-sans text-xs tracking-widest uppercase border border-gold text-gold px-6 py-2.5 hover:bg-gold hover:text-white transition-all duration-300">Contact</a>
           </div>
 
@@ -517,7 +541,7 @@ const allReviews = [...reviews, ...reviews];
         <div class="flex flex-col items-center justify-center flex-1 gap-10">
           <a href="/#properties" class="mobile-link font-sans text-white tracking-[0.4em] uppercase text-lg hover:text-gold transition-colors duration-300">Properties</a>
           <a href="/#about" class="mobile-link font-sans text-white tracking-[0.4em] uppercase text-lg hover:text-gold transition-colors duration-300">About</a>
-          <a href="/#lifestyle" class="mobile-link font-sans text-white tracking-[0.4em] uppercase text-lg hover:text-gold transition-colors duration-300">Lifestyle</a>
+          <a href="#testimonials" class="mobile-link font-sans text-white tracking-[0.4em] uppercase text-lg hover:text-gold transition-colors duration-300">Reviews</a>
           <a href="/#contact" class="mobile-link font-sans text-sm tracking-widest uppercase border border-gold text-gold px-10 py-4 hover:bg-gold hover:text-white transition-all duration-300">Contact</a>
         </div>
 
@@ -657,7 +681,7 @@ const allReviews = [...reviews, ...reviews];
     </section>
 
     <section id="about" class="relative py-20 overflow-hidden about-elegant-bg">
-      <div class="absolute inset-0 bg-gradient-to-r from-black/58 via-black/36 to-black/54"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-black/40" style="z-index:1"></div>
       <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(120deg, rgba(255,255,255,0.07) 0%, transparent 18%, transparent 52%, rgba(201,168,76,0.12) 70%, transparent 100%);"></div>
 
       <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
