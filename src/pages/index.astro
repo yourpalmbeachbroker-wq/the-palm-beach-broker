@@ -390,12 +390,19 @@ const allReviews = [...reviews, ...reviews];
         background: linear-gradient(90deg, rgba(201,168,76,0.96), rgba(238,221,171,0.96), rgba(201,168,76,0.96));
         color: #111;
         font-family: 'Montserrat', sans-serif;
-        font-size: 0.58rem;
+        font-size: 0.60rem;
         letter-spacing: 0.35em;
         text-transform: uppercase;
+        font-weight: 700;
         padding: 0.75rem 1.2rem;
         white-space: nowrap;
         box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+      }
+      .just-sold-banner.sale-badge-hidden {
+        left: -120%;
+        opacity: 0;
+      }
+      .just-sold-banner.sale-badge-animate {
         animation: soldSweep 4s ease-in-out forwards;
       }
 
@@ -419,15 +426,38 @@ const allReviews = [...reviews, ...reviews];
         position: absolute;
         inset: 0;
         background-image:
-          radial-gradient(circle at center, rgba(0,0,0,0.14), rgba(0,0,0,0.42) 62%, rgba(0,0,0,0.56)),
-          radial-gradient(circle at left center, rgba(201,168,76,0.24), transparent 30%),
-          radial-gradient(circle at right center, rgba(69,110,88,0.28), transparent 32%),
+          radial-gradient(circle at center, rgba(0,0,0,0.30), rgba(0,0,0,0.58) 62%, rgba(0,0,0,0.72)),
+          radial-gradient(circle at left center, rgba(201,168,76,0.18), transparent 30%),
+          radial-gradient(circle at right center, rgba(69,110,88,0.22), transparent 32%),
           url('/assets/reviewphoto.jpeg');
         background-size: cover;
-        background-position: center;
-        filter: saturate(1.02);
+        background-position: center 30%;
+        filter: saturate(1.08) brightness(0.85);
+        backdrop-filter: blur(0.5px);
       }
-    </style>
+    
+      .value-label-shimmer {
+        background: linear-gradient(
+          90deg,
+          rgba(255,255,255,0.95) 0%,
+          rgba(201,168,76,1) 40%,
+          rgba(255,255,255,0.95) 55%,
+          rgba(201,168,76,0.85) 80%,
+          rgba(255,255,255,0.9) 100%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shimmerText 3.5s linear infinite;
+      }
+
+      @keyframes shimmerText {
+        0% { background-position: 200% center; }
+        100% { background-position: -200% center; }
+      }
+
+</style>
   </head>
 
   <body class="font-sans bg-white text-gray-900">
@@ -531,28 +561,28 @@ const allReviews = [...reviews, ...reviews];
       </div>
     </section>
 
-    <section class="py-10 marble-values">
+    <section class="py-6 marble-values">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-8">
+        <div class="text-center mb-5">
           <p class="font-sans text-gold tracking-widest uppercase text-sm mb-2">Our Values</p>
           <h3 class="font-serif text-3xl text-white font-light">What Defines Us</h3>
           <div class="w-12 h-px bg-gold mx-auto mt-4"></div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <div class="value-card text-center px-5 py-6 group transition-colors duration-300">
-            <span class="block font-serif text-4xl text-gold mb-3">✦</span>
-            <h4 class="font-sans text-white tracking-widest uppercase text-base font-semibold mb-2">Integrity</h4>
+          <div class="value-card text-center px-4 py-4 group transition-colors duration-300">
+            <span class="block font-serif text-3xl text-gold mb-2">✦</span>
+            <h4 class="font-sans tracking-widest uppercase text-base font-semibold mb-2 value-label-shimmer">Integrity</h4>
             <div class="w-6 h-px bg-gold/50 mx-auto"></div>
           </div>
-          <div class="value-card text-center px-5 py-6 group transition-colors duration-300">
-            <span class="block font-serif text-4xl text-gold mb-3">✦</span>
-            <h4 class="font-sans text-white tracking-widest uppercase text-base font-semibold mb-2">Client Commitment</h4>
+          <div class="value-card text-center px-4 py-4 group transition-colors duration-300">
+            <span class="block font-serif text-3xl text-gold mb-2">✦</span>
+            <h4 class="font-sans tracking-widest uppercase text-base font-semibold mb-2 value-label-shimmer">Client Commitment</h4>
             <div class="w-6 h-px bg-gold/50 mx-auto"></div>
           </div>
-          <div class="value-card text-center px-5 py-6 group transition-colors duration-300">
-            <span class="block font-serif text-4xl text-gold mb-3">✦</span>
-            <h4 class="font-sans text-white tracking-widest uppercase text-base font-semibold mb-2">Results</h4>
+          <div class="value-card text-center px-4 py-4 group transition-colors duration-300">
+            <span class="block font-serif text-3xl text-gold mb-2">✦</span>
+            <h4 class="font-sans tracking-widest uppercase text-base font-semibold mb-2 value-label-shimmer">Results</h4>
             <div class="w-6 h-px bg-gold/50 mx-auto"></div>
           </div>
         </div>
@@ -584,7 +614,7 @@ const allReviews = [...reviews, ...reviews];
           {sales.map((sale) => (
             <article class="group relative bg-emerald-800/90 border border-gold/70 flex flex-col overflow-hidden">
               {sale.featuredNew && (
-                <div class="just-sold-banner">Ultimos Listings Vendidos</div>
+                <div class="just-sold-banner sale-badge-hidden">RECIÉN VENDIDA</div>
               )}
 
               <div class="relative overflow-hidden">
@@ -721,7 +751,7 @@ const allReviews = [...reviews, ...reviews];
 
     <section id="testimonials" class="relative py-24 overflow-hidden">
       <div class="testimonials-photo-bg"></div>
-      <div class="absolute inset-0 bg-black/18"></div>
+      <div class="absolute inset-0 bg-black/25"></div>
 
       <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 text-center">
         <p class="text-gold tracking-[0.3em] uppercase text-xs font-sans font-light mb-4">Testimonials</p>
@@ -890,12 +920,12 @@ const allReviews = [...reviews, ...reviews];
       </div>
     </section>
 
-    <footer class="bg-black text-white py-10">
+    <footer class="bg-black text-white py-5">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h3 class="font-serif text-2xl mb-2">THE PALM BEACH BROKER</h3>
-        <p class="text-white/70 text-sm mb-2">Danieyis Jimenez · Broker Associate | CGI Realty</p>
-        <p class="text-white/60 text-sm mb-1">Your trusted real estate specialist in Palm Beach, Florida.</p>
-        <p class="text-white/60 text-sm mb-6">Client centered. Results driven.</p>
+        <h3 class="font-serif text-xl mb-1">THE PALM BEACH BROKER</h3>
+        <p class="text-white/70 text-xs mb-1">Danieyis Jimenez · Broker Associate | CGI Realty</p>
+        <p class="text-white/60 text-xs mb-1">Your trusted real estate specialist in Palm Beach, Florida.</p>
+        <p class="text-white/60 text-xs mb-3">Client centered. Results driven.</p>
         <p class="text-white/40 text-xs">© {new Date().getFullYear()} The Palm Beach Broker. All rights reserved.</p>
       </div>
     </footer>
@@ -977,6 +1007,35 @@ const allReviews = [...reviews, ...reviews];
           }, 4000);
         }
       });
-    </script>
+    
+
+  // IntersectionObserver for "RECIÉN VENDIDA" sale badges
+  (function() {
+    function initSaleBadges() {
+      const badges = document.querySelectorAll('.just-sold-banner');
+      if (!badges.length) return;
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const badge = entry.target;
+            badge.classList.remove('sale-badge-hidden');
+            badge.classList.add('sale-badge-animate');
+            observer.unobserve(badge);
+          }
+        });
+      }, { threshold: 0.3 });
+      
+      badges.forEach(badge => observer.observe(badge));
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initSaleBadges);
+    } else {
+      initSaleBadges();
+    }
+  })();
+
+</script>
   </body>
 </html>
