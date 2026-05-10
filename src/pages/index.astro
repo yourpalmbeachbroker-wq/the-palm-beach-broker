@@ -385,11 +385,48 @@ const allReviews = [...reviews, ...reviews];
       .animate-scroll:hover { animation-play-state: paused; }
 
       .marble-values {
+        position: relative;
         background:
           radial-gradient(circle at 20% 20%, rgba(209, 169, 93, 0.07), transparent 34%),
           radial-gradient(circle at 80% 30%, rgba(137, 168, 146, 0.11), transparent 36%),
           radial-gradient(circle at 30% 80%, rgba(95, 126, 108, 0.12), transparent 34%),
           linear-gradient(135deg, #11231d 0%, #1a3129 35%, #213c33 65%, #162821 100%);
+        overflow: hidden;
+      }
+      .marble-values::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image:
+          repeating-linear-gradient(
+            45deg,
+            rgba(201, 168, 76, 0.04) 0px,
+            rgba(201, 168, 76, 0.04) 1px,
+            transparent 1px,
+            transparent 40px
+          ),
+          repeating-linear-gradient(
+            -45deg,
+            rgba(201, 168, 76, 0.04) 0px,
+            rgba(201, 168, 76, 0.04) 1px,
+            transparent 1px,
+            transparent 40px
+          );
+        pointer-events: none;
+        z-index: 0;
+      }
+      .marble-values::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, rgba(201,168,76,0.06) 1px, transparent 1px);
+        background-size: 28px 28px;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .marble-values > * {
+        position: relative;
+        z-index: 1;
       }
 
       .value-card {
@@ -629,17 +666,17 @@ const allReviews = [...reviews, ...reviews];
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
           <div class="value-card text-center px-4 py-4 group transition-colors duration-300">
-            <span class="block font-serif text-3xl text-gold mb-2"></span>
+            <span class="block font-serif text-3xl text-gold mb-2">◆</span>
             <h4 class="font-sans tracking-widest uppercase text-base font-semibold mb-2 value-label-shimmer">Integrity</h4>
             <div class="w-6 h-px bg-gold/50 mx-auto"></div>
           </div>
           <div class="value-card text-center px-4 py-4 group transition-colors duration-300">
-            <span class="block font-serif text-3xl text-gold mb-2"></span>
+            <span class="block font-serif text-3xl text-gold mb-2">◆</span>
             <h4 class="font-sans tracking-widest uppercase text-base font-semibold mb-2 value-label-shimmer">Client Commitment</h4>
             <div class="w-6 h-px bg-gold/50 mx-auto"></div>
           </div>
           <div class="value-card text-center px-4 py-4 group transition-colors duration-300">
-            <span class="block font-serif text-3xl text-gold mb-2"></span>
+            <span class="block font-serif text-3xl text-gold mb-2">◆</span>
             <h4 class="font-sans tracking-widest uppercase text-base font-semibold mb-2 value-label-shimmer">Results</h4>
             <div class="w-6 h-px bg-gold/50 mx-auto"></div>
           </div>
