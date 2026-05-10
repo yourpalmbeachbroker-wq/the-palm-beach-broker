@@ -16,7 +16,7 @@ const sales = [
     address: "10209 NW Field Flower Trl #231",
     details: "3 Bed • 4 Bath • Single Family",
     soldPrice: "$629,000",
-    image: "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=1200&q=80",
+    image: "/assets/c8216010b332e814490bb754adeac598-cc_ft_960.webp",
     zillowUrl: "https://www.zillow.com/homedetails/10209-NW-Field-Flower-Trl-231-Port-Saint-Lucie-FL-34987/458406185_zpid/"
   },
   {
@@ -69,7 +69,7 @@ const sales = [
   },
   {
     city: "Miami, FL",
-    role: "Buyer Representation",
+    role: "Seller Representation",
     address: "11290 SW 48th St",
     details: "4 Bed • 3 Bath • Single Family",
     soldPrice: "$780,000",
@@ -129,6 +129,25 @@ const sales = [
     soldPrice: "$130,000",
     image: "https://photos.zillowstatic.com/fp/6d7c35274d7c49763798720a36c8c6d5-cc_ft_960.webp",
     zillowUrl: "https://www.zillow.com/homedetails/341-Lake-Frances-Dr-West-Palm-Beach-FL-33411/46535992_zpid/"
+  }
+,
+  {
+    city: "West Palm Beach, FL",
+    role: "Buyer Representation",
+    address: "4212 126th Dr N",
+    details: "3 Bed • 2 Bath • Single Family",
+    soldPrice: "$480,000",
+    image: "/assets/09957ffdab6abef1bd42881a777541db-cc_ft_960.webp",
+    zillowUrl: "https://www.zillow.com/homedetails/4212-126th-Dr-N-West-Palm-Beach-FL-33411/46496272_zpid/"
+  },
+  {
+    city: "Lake Worth, FL",
+    role: "Buyer Representation",
+    address: "8242 Tailshot Ct",
+    details: "3 Bed • 3 Bath • Townhouse",
+    soldPrice: "$525,000",
+    image: "/assets/casa.webp",
+    zillowUrl: "https://www.zillow.com/homedetails/8242-Tailshot-Ct-Lake-Worth-FL-33467/331680635_zpid/"
   }
 ];
 const partners = [
@@ -508,7 +527,7 @@ const allReviews = [...reviews, ...reviews];
         <a href="/#properties" class="sp-btn sp-btn-a" onclick="hideSplash()">Browse Properties</a>
         <a href="/#contact" class="sp-btn sp-btn-b" onclick="hideSplash()">Get In Touch</a>
       </div>
-      <button class="sp-skip" onclick="hideSplash()">Skip Intro âº</button>
+      <button class="sp-skip" onclick="hideSplash()">Skip Intro </button>
     </div>
 
     <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" id="main-nav">
@@ -610,17 +629,17 @@ const allReviews = [...reviews, ...reviews];
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
           <div class="value-card text-center px-4 py-4 group transition-colors duration-300">
-            <span class="block font-serif text-3xl text-gold mb-2">â¦</span>
+            <span class="block font-serif text-3xl text-gold mb-2"></span>
             <h4 class="font-sans tracking-widest uppercase text-base font-semibold mb-2 value-label-shimmer">Integrity</h4>
             <div class="w-6 h-px bg-gold/50 mx-auto"></div>
           </div>
           <div class="value-card text-center px-4 py-4 group transition-colors duration-300">
-            <span class="block font-serif text-3xl text-gold mb-2">â¦</span>
+            <span class="block font-serif text-3xl text-gold mb-2"></span>
             <h4 class="font-sans tracking-widest uppercase text-base font-semibold mb-2 value-label-shimmer">Client Commitment</h4>
             <div class="w-6 h-px bg-gold/50 mx-auto"></div>
           </div>
           <div class="value-card text-center px-4 py-4 group transition-colors duration-300">
-            <span class="block font-serif text-3xl text-gold mb-2">â¦</span>
+            <span class="block font-serif text-3xl text-gold mb-2"></span>
             <h4 class="font-sans tracking-widest uppercase text-base font-semibold mb-2 value-label-shimmer">Results</h4>
             <div class="w-6 h-px bg-gold/50 mx-auto"></div>
           </div>
