@@ -1,0 +1,561 @@
+---
+// /start - Buyer & Seller Interactive Questionnaire
+// The Palm Beach Broker - Danieyis Jimenez
+// Submissions are sent via FormSubmit.co to yourpalmbeachbroker@gmail.com
+// To pipe leads directly into Follow Up Boss (CRM):
+//   1) In FUB: Admin -> Lead Flow -> Add Lead Flow -> "Web Form"
+//   2) Copy the generated email address (looks like: pixel+xxxxx@followupboss.me)
+//   3) Replace FUB_LEAD_EMAIL below with that address
+//   4) When FormSubmit also CCs that address, every lead will auto-create in FUB
+const FUB_LEAD_EMAIL = "REPLACE_WITH_FUB_LEAD_FLOW_EMAIL@followupboss.me";
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Looking to Buy or Sell? | The Palm Beach Broker</title>
+    <meta name="description" content="Tell us a little about your real estate goals and Danieyis Jimenez will personally reach out." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --gold: #c9a84c;
+        --gold-soft: #d8bd6f;
+        --black: #080808;
+        --ink: #111;
+        --bg: #f7f4ee;
+        --line: rgba(201, 168, 76, 0.35);
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      body {
+        font-family: 'Inter', system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+      }
+      .topbar {
+        background: var(--black);
+        color: #fff;
+        padding: 18px 24px;
+        text-align: center;
+        border-bottom: 1px solid var(--gold);
+      }
+      .topbar a {
+        color: var(--gold);
+        text-decoration: none;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 22px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      .wrap {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 48px 22px 80px;
+      }
+      .progress {
+        height: 4px;
+        background: rgba(0,0,0,0.08);
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 36px;
+      }
+      .progress > span {
+        display: block;
+        height: 100%;
+        width: 0%;
+        background: var(--gold);
+        transition: width .35s ease;
+      }
+      .step { display: none; }
+      .step.active { display: block; animation: fade .35s ease; }
+      @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+      .eyebrow {
+        font-size: 12px;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 14px;
+      }
+      h1, h2 {
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 500;
+        color: var(--black);
+        line-height: 1.15;
+        margin: 0 0 18px;
+      }
+      h1 { font-size: clamp(32px, 5vw, 46px); }
+      h2 { font-size: clamp(24px, 3.6vw, 32px); }
+      p.sub { color: #555; margin: 0 0 28px; font-size: 16px; }
+      .choice-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      @media (max-width: 520px) { .choice-grid { grid-template-columns: 1fr; } }
+      .choice {
+        appearance: none;
+        border: 1px solid var(--line);
+        background: #fff;
+        padding: 18px 20px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-family: inherit;
+        color: var(--ink);
+        text-align: left;
+        cursor: pointer;
+        transition: all .2s ease;
+      }
+      .choice:hover { border-color: var(--gold); box-shadow: 0 6px 22px rgba(201,168,76,0.18); transform: translateY(-1px); }
+      .choice.selected { background: var(--black); color: #fff; border-color: var(--black); }
+      .choice .label-sm { display:block; font-size: 11px; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 4px; }
+      input[type="text"], input[type="email"], input[type="tel"], input[type="number"], select, textarea {
+        width: 100%;
+        padding: 14px 16px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        font-size: 16px;
+        font-family: inherit;
+        background: #fff;
+        color: var(--ink);
+        transition: border-color .2s, box-shadow .2s;
+      }
+      input:focus, select:focus, textarea:focus {
+        outline: none;
+        border-color: var(--gold);
+        box-shadow: 0 0 0 3px rgba(201,168,76,0.18);
+      }
+      textarea { min-height: 110px; resize: vertical; }
+      label.field { display: block; margin-bottom: 16px; }
+      label.field > span { display: block; font-size: 13px; color: #444; margin-bottom: 6px; letter-spacing: .04em; }
+      .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+      @media (max-width: 520px) { .row { grid-template-columns: 1fr; } }
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 28px;
+        gap: 12px;
+      }
+      .btn {
+        appearance: none;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 14px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        padding: 14px 26px;
+        border-radius: 999px;
+        transition: transform .15s ease, box-shadow .2s ease, background .2s;
+      }
+      .btn-primary { background: var(--black); color: var(--gold); }
+      .btn-primary:hover { background: var(--gold); color: var(--black); box-shadow: 0 8px 24px rgba(201,168,76,0.35); }
+      .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; }
+      .btn-ghost {
+        background: transparent;
+        color: #555;
+        border: 1px solid transparent;
+      }
+      .btn-ghost:hover { color: var(--black); }
+      .pill {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 999px;
+        background: rgba(201,168,76,0.12);
+        color: var(--gold);
+        font-size: 11px;
+        letter-spacing: .22em;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+      .footer-note {
+        margin-top: 36px;
+        font-size: 12px;
+        color: #777;
+        text-align: center;
+        line-height: 1.6;
+      }
+      .footer-note a { color: var(--gold); text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <a href="/">THE PALM BEACH BROKER</a>
+    </header>
+
+    <main class="wrap">
+      <div class="progress"><span id="bar"></span></div>
+
+      <form id="qForm" action="https://formsubmit.co/yourpalmbeachbroker@gmail.com" method="POST" novalidate>
+        <!-- FormSubmit config -->
+        <input type="hidden" name="_subject" value="New Lead from /start questionnaire" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value="https://yourpalmbeachbroker.com/success" />
+        <input type="hidden" name="_cc" value={FUB_LEAD_EMAIL} />
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
+        <!-- STEP 0: Buyer or Seller -->
+        <section class="step active" data-step="0">
+          <div class="pill">Step 1</div>
+          <h1>Looking to <em>Buy</em> or <em>Sell</em>?</h1>
+          <p class="sub">Answer a few quick questions and Danieyis will personally reach out.</p>
+          <div class="choice-grid">
+            <button type="button" class="choice" data-role="buyer">
+              <span class="label-sm">I want to</span>
+              <strong style="font-family:'Cormorant Garamond',serif;font-size:26px;">Buy a Property</strong>
+            </button>
+            <button type="button" class="choice" data-role="seller">
+              <span class="label-sm">I want to</span>
+              <strong style="font-family:'Cormorant Garamond',serif;font-size:26px;">Sell a Property</strong>
+            </button>
+          </div>
+          <input type="hidden" name="Lead Type" id="leadType" />
+        </section>
+
+        <!-- BUYER STEPS -->
+        <section class="step" data-step="b1" data-role="buyer">
+          <div class="pill">Buyer</div>
+          <h2>What are you looking to buy?</h2>
+          <div class="choice-grid">
+            <button type="button" class="choice opt" data-field="Property Type" data-value="Single Family Home">House</button>
+            <button type="button" class="choice opt" data-field="Property Type" data-value="Condo">Condo</button>
+            <button type="button" class="choice opt" data-field="Property Type" data-value="Townhouse">Townhouse</button>
+            <button type="button" class="choice opt" data-field="Property Type" data-value="Open / Not Sure">Open / Not sure yet</button>
+          </div>
+          <input type="hidden" name="Property Type" />
+        </section>
+
+        <section class="step" data-step="b2" data-role="buyer">
+          <div class="pill">Buyer</div>
+          <h2>Approximately, what is your credit score?</h2>
+          <div class="choice-grid">
+            <button type="button" class="choice opt" data-field="Credit Score" data-value="740+">740+ (Excellent)</button>
+            <button type="button" class="choice opt" data-field="Credit Score" data-value="700-739">700 - 739</button>
+            <button type="button" class="choice opt" data-field="Credit Score" data-value="660-699">660 - 699</button>
+            <button type="button" class="choice opt" data-field="Credit Score" data-value="620-659">620 - 659</button>
+            <button type="button" class="choice opt" data-field="Credit Score" data-value="Below 620">Below 620</button>
+            <button type="button" class="choice opt" data-field="Credit Score" data-value="Not Sure">Not sure</button>
+          </div>
+          <input type="hidden" name="Credit Score" />
+        </section>
+
+        <section class="step" data-step="b3" data-role="buyer">
+          <div class="pill">Buyer</div>
+          <h2>What is your budget?</h2>
+          <label class="field">
+            <span>Approximate purchase price</span>
+            <input type="text" name="Budget" placeholder="e.g. $450,000 - $600,000" />
+          </label>
+        </section>
+
+        <section class="step" data-step="b4" data-role="buyer">
+          <div class="pill">Buyer</div>
+          <h2>Which areas or zip codes interest you?</h2>
+          <label class="field">
+            <span>Cities, neighborhoods, or zip codes</span>
+            <textarea name="Areas of Interest" placeholder="e.g. Palm Beach Gardens, Wellington, 33411, 33414..."></textarea>
+          </label>
+        </section>
+
+        <section class="step" data-step="b5" data-role="buyer">
+          <div class="pill">Buyer</div>
+          <h2>How much do you have for down payment?</h2>
+          <label class="field">
+            <span>Approximate amount (or percentage)</span>
+            <input type="text" name="Down Payment" placeholder="e.g. $50,000 or 10%" />
+          </label>
+        </section>
+
+        <section class="step" data-step="b6" data-role="buyer">
+          <div class="pill">Buyer</div>
+          <h2>Are you currently working with another realtor?</h2>
+          <div class="choice-grid">
+            <button type="button" class="choice opt" data-field="Working With Realtor" data-value="No">No</button>
+            <button type="button" class="choice opt" data-field="Working With Realtor" data-value="Yes">Yes</button>
+          </div>
+          <input type="hidden" name="Working With Realtor" />
+        </section>
+
+        <section class="step" data-step="b7" data-role="buyer">
+          <div class="pill">Buyer</div>
+          <h2>Best time to reach you?</h2>
+          <div class="choice-grid">
+            <button type="button" class="choice opt" data-field="Best Time To Contact" data-value="Morning">Morning</button>
+            <button type="button" class="choice opt" data-field="Best Time To Contact" data-value="Afternoon">Afternoon</button>
+            <button type="button" class="choice opt" data-field="Best Time To Contact" data-value="Evening">Evening</button>
+            <button type="button" class="choice opt" data-field="Best Time To Contact" data-value="Anytime">Anytime</button>
+          </div>
+          <input type="hidden" name="Best Time To Contact" />
+        </section>
+
+        <section class="step" data-step="b8" data-role="buyer">
+          <div class="pill">Buyer</div>
+          <h2>Do you prefer text or call?</h2>
+          <div class="choice-grid">
+            <button type="button" class="choice opt" data-field="Contact Preference" data-value="Text">Text</button>
+            <button type="button" class="choice opt" data-field="Contact Preference" data-value="Call">Call</button>
+            <button type="button" class="choice opt" data-field="Contact Preference" data-value="Either">Either</button>
+          </div>
+          <input type="hidden" name="Contact Preference" />
+        </section>
+
+        <!-- SELLER STEPS -->
+        <section class="step" data-step="s1" data-role="seller">
+          <div class="pill">Seller</div>
+          <h2>Property address</h2>
+          <label class="field">
+            <span>Street, City, State, Zip</span>
+            <input type="text" name="Property Address" placeholder="e.g. 123 Ocean Dr, Palm Beach, FL 33480" />
+          </label>
+        </section>
+
+        <section class="step" data-step="s2" data-role="seller">
+          <div class="pill">Seller</div>
+          <h2>When would you like to sell?</h2>
+          <div class="choice-grid">
+            <button type="button" class="choice opt" data-field="Timeline" data-value="ASAP">ASAP</button>
+            <button type="button" class="choice opt" data-field="Timeline" data-value="1-3 months">1 - 3 months</button>
+            <button type="button" class="choice opt" data-field="Timeline" data-value="3-6 months">3 - 6 months</button>
+            <button type="button" class="choice opt" data-field="Timeline" data-value="6-12 months">6 - 12 months</button>
+            <button type="button" class="choice opt" data-field="Timeline" data-value="Just exploring">Just exploring</button>
+          </div>
+          <input type="hidden" name="Timeline" />
+        </section>
+
+        <section class="step" data-step="s3" data-role="seller">
+          <div class="pill">Seller</div>
+          <h2>How much do you owe on the mortgage?</h2>
+          <label class="field">
+            <span>Approximate balance (or "Paid off")</span>
+            <input type="text" name="Mortgage Balance" placeholder="e.g. $220,000 or Paid off" />
+          </label>
+        </section>
+
+        <section class="step" data-step="s4" data-role="seller">
+          <div class="pill">Seller</div>
+          <h2>How old is the roof?</h2>
+          <div class="choice-grid">
+            <button type="button" class="choice opt" data-field="Roof Age" data-value="0-5 years">0 - 5 years</button>
+            <button type="button" class="choice opt" data-field="Roof Age" data-value="6-10 years">6 - 10 years</button>
+            <button type="button" class="choice opt" data-field="Roof Age" data-value="11-15 years">11 - 15 years</button>
+            <button type="button" class="choice opt" data-field="Roof Age" data-value="16+ years">16+ years</button>
+            <button type="button" class="choice opt" data-field="Roof Age" data-value="Not sure">Not sure</button>
+          </div>
+          <input type="hidden" name="Roof Age" />
+        </section>
+
+        <section class="step" data-step="s5" data-role="seller">
+          <div class="pill">Seller</div>
+          <h2>Any liens or legal issues on the property?</h2>
+          <div class="choice-grid">
+            <button type="button" class="choice opt" data-field="Liens or Legal Issues" data-value="No">No</button>
+            <button type="button" class="choice opt" data-field="Liens or Legal Issues" data-value="Yes">Yes</button>
+            <button type="button" class="choice opt" data-field="Liens or Legal Issues" data-value="Not sure">Not sure</button>
+          </div>
+          <input type="hidden" name="Liens or Legal Issues" />
+          <label class="field" style="margin-top:14px;">
+            <span>If yes, briefly describe (optional)</span>
+            <textarea name="Liens Notes" placeholder="Optional details..."></textarea>
+          </label>
+        </section>
+
+        <section class="step" data-step="s6" data-role="seller">
+          <div class="pill">Seller</div>
+          <h2>Is the property rented or vacant?</h2>
+          <div class="choice-grid">
+            <button type="button" class="choice opt" data-field="Occupancy" data-value="Owner Occupied">Owner occupied</button>
+            <button type="button" class="choice opt" data-field="Occupancy" data-value="Rented">Rented</button>
+            <button type="button" class="choice opt" data-field="Occupancy" data-value="Vacant">Vacant</button>
+          </div>
+          <input type="hidden" name="Occupancy" />
+        </section>
+
+        <section class="step" data-step="s7" data-role="seller">
+          <div class="pill">Seller</div>
+          <h2>When do you plan to move?</h2>
+          <label class="field">
+            <span>Approximate move date or plan</span>
+            <input type="text" name="Move Plan" placeholder="e.g. After closing, June 2026, relocating..." />
+          </label>
+        </section>
+
+        <section class="step" data-step="s8" data-role="seller">
+          <div class="pill">Seller</div>
+          <h2>Best time to reach you?</h2>
+          <div class="choice-grid">
+            <button type="button" class="choice opt" data-field="Best Time To Contact" data-value="Morning">Morning</button>
+            <button type="button" class="choice opt" data-field="Best Time To Contact" data-value="Afternoon">Afternoon</button>
+            <button type="button" class="choice opt" data-field="Best Time To Contact" data-value="Evening">Evening</button>
+            <button type="button" class="choice opt" data-field="Best Time To Contact" data-value="Anytime">Anytime</button>
+          </div>
+          <input type="hidden" name="Best Time To Contact" />
+        </section>
+
+        <section class="step" data-step="s9" data-role="seller">
+          <div class="pill">Seller</div>
+          <h2>Do you prefer text or call?</h2>
+          <div class="choice-grid">
+            <button type="button" class="choice opt" data-field="Contact Preference" data-value="Text">Text</button>
+            <button type="button" class="choice opt" data-field="Contact Preference" data-value="Call">Call</button>
+            <button type="button" class="choice opt" data-field="Contact Preference" data-value="Either">Either</button>
+          </div>
+          <input type="hidden" name="Contact Preference" />
+        </section>
+
+        <!-- FINAL STEP: Contact -->
+        <section class="step" data-step="contact">
+          <div class="pill">Almost there</div>
+          <h2>How can Danieyis reach you?</h2>
+          <p class="sub">Your information is private and will only be used to contact you about your inquiry.</p>
+          <div class="row">
+            <label class="field">
+              <span>First name</span>
+              <input type="text" name="First Name" required />
+            </label>
+            <label class="field">
+              <span>Last name</span>
+              <input type="text" name="Last Name" required />
+            </label>
+          </div>
+          <label class="field">
+            <span>Email</span>
+            <input type="email" name="Email" required />
+          </label>
+          <label class="field">
+            <span>Phone</span>
+            <input type="tel" name="Phone" required placeholder="(555) 555-5555" />
+          </label>
+          <p class="footer-note">
+            By submitting, you agree to be contacted by THE DANIEYIS GROUP LLC via call, email, and text for real estate services.
+            See our <a href="/privacy-policy">Privacy Policy</a>.
+          </p>
+        </section>
+
+        <div class="nav">
+          <button type="button" class="btn btn-ghost" id="backBtn" style="visibility:hidden;">&larr; Back</button>
+          <button type="button" class="btn btn-primary" id="nextBtn" disabled>Continue &rarr;</button>
+          <button type="submit" class="btn btn-primary" id="submitBtn" style="display:none;">Submit</button>
+        </div>
+      </form>
+    </main>
+
+    <script is:inline>
+      (function () {
+        const form = document.getElementById('qForm');
+        const bar = document.getElementById('bar');
+        const backBtn = document.getElementById('backBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        const leadTypeInput = document.getElementById('leadType');
+
+        const buyerOrder = ['0','b1','b2','b3','b4','b5','b6','b7','b8','contact'];
+        const sellerOrder = ['0','s1','s2','s3','s4','s5','s6','s7','s8','s9','contact'];
+        let order = ['0'];
+        let idx = 0;
+        let role = null;
+
+        function getStepEl(key) {
+          return form.querySelector('.step[data-step="' + key + '"]');
+        }
+
+        function show(key) {
+          form.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+          getStepEl(key).classList.add('active');
+          // progress
+          const pct = Math.round((idx / (order.length - 1)) * 100);
+          bar.style.width = pct + '%';
+          // back btn
+          backBtn.style.visibility = idx === 0 ? 'hidden' : 'visible';
+          // submit on last step
+          const isLast = key === 'contact';
+          submitBtn.style.display = isLast ? 'inline-block' : 'none';
+          nextBtn.style.display = isLast ? 'none' : 'inline-block';
+          validateStep();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function validateStep() {
+          const key = order[idx];
+          const step = getStepEl(key);
+          let ok = true;
+          // Step 0: must have a role
+          if (key === '0') { ok = !!role; }
+          // Steps with options: hidden input must have value
+          const optBtns = step.querySelectorAll('.choice.opt');
+          if (optBtns.length) {
+            const fieldName = optBtns[0].dataset.field;
+            const hidden = step.querySelector('input[type="hidden"][name="' + fieldName + '"]');
+            ok = ok && hidden && hidden.value !== '';
+          }
+          // Steps with text input: must be filled (except the Liens Notes optional textarea)
+          const textInputs = step.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], textarea');
+          textInputs.forEach(inp => {
+            if (inp.name === 'Liens Notes') return;
+            if (inp.required || inp.closest('.step').dataset.step !== 'contact') {
+              if (!inp.value.trim()) ok = false;
+            }
+          });
+          // Contact step: email + phone basic check
+          if (key === 'contact') {
+            const email = step.querySelector('input[name="Email"]').value.trim();
+            const phone = step.querySelector('input[name="Phone"]').value.trim();
+            if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) ok = false;
+            if (phone.replace(/\D/g,'').length < 7) ok = false;
+          }
+          nextBtn.disabled = !ok;
+          submitBtn.disabled = !ok;
+        }
+
+        // Click handlers for option buttons
+        form.addEventListener('click', (e) => {
+          const btn = e.target.closest('.choice');
+          if (!btn) return;
+          // Role selection on step 0
+          if (btn.dataset.role) {
+            role = btn.dataset.role;
+            leadTypeInput.value = role === 'buyer' ? 'Buyer' : 'Seller';
+            form.querySelectorAll('[data-step="0"] .choice').forEach(c => c.classList.remove('selected'));
+            btn.classList.add('selected');
+            order = role === 'buyer' ? buyerOrder.slice() : sellerOrder.slice();
+            validateStep();
+            return;
+          }
+          // Option buttons
+          if (btn.classList.contains('opt')) {
+            const field = btn.dataset.field;
+            const val = btn.dataset.value;
+            const step = btn.closest('.step');
+            step.querySelectorAll('.choice.opt[data-field="' + field + '"]').forEach(c => c.classList.remove('selected'));
+            btn.classList.add('selected');
+            const hidden = step.querySelector('input[type="hidden"][name="' + field + '"]');
+            if (hidden) hidden.value = val;
+            validateStep();
+            // auto-advance for single-choice steps (small delay for UX)
+            setTimeout(() => { if (!nextBtn.disabled) goNext(); }, 220);
+          }
+        });
+
+        // Validate on input
+        form.addEventListener('input', validateStep);
+
+        function goNext() {
+          if (idx < order.length - 1) { idx++; show(order[idx]); }
+        }
+        function goBack() {
+          if (idx > 0) { idx--; show(order[idx]); }
+        }
+        nextBtn.addEventListener('click', goNext);
+        backBtn.addEventListener('click', goBack);
+
+        // init
+        show(order[idx]);
+      })();
+    </script>
+  </body>
+</html>
