@@ -21,6 +21,8 @@ jobs:
         uses: withastro/action@v4
         with:
           package-manager: npm
+        env:
+          GITHUB_PAGES: 'true'
 
   deploy:
     needs: build
