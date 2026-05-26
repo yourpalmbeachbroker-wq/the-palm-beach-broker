@@ -8,7 +8,7 @@ const { title = 'The Palm Beach Broker' } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-    <link rel="icon" type="image/png" href="/logos/Logos (7).png" />
+    <link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}logos/Logos (7).png`} />
   </head>
   <body>
     <slot />
